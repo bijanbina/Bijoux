@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Microlectronic
+Exec=nautilus "/home/bijan/Documents/EBook/Electronic/Microelectronic"
+Type=Application
+Icon=AdobeLightroom
+StartupNotify=true
+Categories=GNOME;GTK;Utility;Core;FileManager;

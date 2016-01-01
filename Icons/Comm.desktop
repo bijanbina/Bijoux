@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Microelectronics
+Exec=nautilus "/home/bijan/Documents/EBook/Communication"
+Type=Application
+Icon=/usr/share/icons/Numix-Square/48x48/apps/AdobePhotoshop.svg
+StartupNotify=true
+Categories=GNOME;GTK;Utility;Core;FileManager;
+Name[en_US]=Comm
