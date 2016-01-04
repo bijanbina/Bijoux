@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Jpanese
+Exec=evince "/home/bijan/Documents/EBook/TOEFL/Learning Japanese Hiragana and Katakana.pdf"
+Type=Application
+Icon=tiled
+StartupNotify=true
+Categories=GNOME;GTK;Utility;Core;FileManager;
+Name[en_US]=Japanese

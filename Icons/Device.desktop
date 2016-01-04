@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Devices
+Exec=evince "/home/bijan/Documents/EBook/Electronic/Device/Electronic Devices and Circuit Theory.pdf"
+Type=Application
+Icon=AdobeAIR
