@@ -1,0 +1,2 @@
+to run script at startup add gnome-terminal.desktop to ~/.config/autostart you can do that by
+mv gnome-terminal.desktop ~/.config/autostart
