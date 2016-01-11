@@ -1,2 +1,3 @@
 to run script at startup add gnome-terminal.desktop to ~/.config/autostart you can do that by
 mv gnome-terminal.desktop ~/.config/autostart
+software for zathura pdf: tabbed zathura-pdf-poppler zathura
