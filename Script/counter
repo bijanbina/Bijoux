@@ -1,5 +1,5 @@
 #! /bin/sh
 xrandr --output HDMI-0 --off
-cd '/run/media/bijan/01C9065DAC7454C0/2011/Counter-Strike Source'
+cd '/run/media/bijan/0DECD1C53869ECB0/Software/Counter-Strike Source'
 wine ./hl2.exe -nomaster -game cstrike -nojoy
 afterCounter
