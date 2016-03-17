@@ -1,0 +1,1 @@
+sudo xinput set-prop "USB Optical Wheel Mouse" "Evdev Wheel Emulation Inertia" 20;sudo xinput set-prop "USB Optical Wheel Mouse" "Evdev Wheel Emulation Timeout" 1;sudo xinput set-prop "USB Optical Wheel Mouse" "Evdev Wheel Emulation Button" 9;sudo xinput set-prop "USB Optical Wheel Mouse" "Evdev Wheel Emulation" 1

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Matlab
+Comment=Matlab
+Exec=/usr/local/Matlab/bin/glnxa64/MATLAB
+Icon=/usr/share/icons/Numix-Square/48x48/apps/maya.svg
+Terminal=true
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;System;Monitor;
+Keywords=Matlab;matlab
+Name[en_US]=Matlab
