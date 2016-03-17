@@ -1,3 +1,15 @@
+===============================
+Configure Start-up Script
+===============================
 to run script at startup add gnome-terminal.desktop to ~/.config/autostart you can do that by
 mv gnome-terminal.desktop ~/.config/autostart
 software for zathura pdf: tabbed zathura-pdf-poppler zathura
+===============================
+Add Program to Sudo List
+===============================
+edit /etc/sudoers in vim (sudoedit is actually buggy)
+add following line replaceing your user and host name
+user hostname= NOPASSWD: script
+example:
+bijan Bijan-PC= NOPASSWD: /home/bijan/Project/Bijoux/Script/startup.sh
+
