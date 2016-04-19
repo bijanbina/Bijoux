@@ -13,3 +13,23 @@ user hostname= NOPASSWD: script
 example:
 bijan Bijan-PC= NOPASSWD: /home/bijan/Project/Bijoux/Script/startup.sh
 
+===============================
+Wizard Scripts
+===============================
+
+Test Mouse Click
+-----------------
+xev | awk '/ButtonRelease/ {c++;print c} {}'
+
+===============================
+Useful Apps
+===============================
+nautilus-admin: do admin stuff with nautilus
+
+===============================
+Bug Fixing
+===============================
+1. gsetting key load failed
+if you already reset the key and it doesn't take effect there is a good possibility that there is 
+outher key in some other directory that the defaults. In this case it's in /usr/local/share/glib/schematic
+to fix this remove or recompile from the source
