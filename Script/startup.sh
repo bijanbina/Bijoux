@@ -8,4 +8,5 @@ amixer -c 0 sset "Auto-Mute Mode" Disabled
 amixer -c 0 sset "Headphone" 100
 amixer -c 0 sset "Headphone" on
 xinput set-prop 12 "Device Accel Constant Deceleration" 1.5
+sudo cpupower frequency-set -d 2.5GHz
 xbindkeys

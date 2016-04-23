@@ -33,3 +33,9 @@ Bug Fixing
 if you already reset the key and it doesn't take effect there is a good possibility that there is 
 outher key in some other directory that the defaults. In this case it's in /usr/local/share/glib/schematic
 to fix this remove or recompile from the source
+
+2. Gnome is very slow
+This is due to low cpu frequency by running
+cpupower -c 1 frequency-set -d 2.5GHz
+get very fast. Fortunately this does not produce much heat 
+("thanks to mosfet capacitance")
