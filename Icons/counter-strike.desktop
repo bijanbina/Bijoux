@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Counter Strike
+GenericName=Counter Strike Source
+Comment=Counter Strike Source
+Keywords=counter;strike;source;counter strike;game;
+Exec=/home/bijan/Project/Bijoux/Script/counter
+Icon=/home/bijan/Project/Bijoux/Icons/counter-strike.png
+Terminal=false
+Type=Application
+#Categories=GNOME;GTK;Office;WordProcessor;Publishing;
+#Actions=Window;Document;
+
