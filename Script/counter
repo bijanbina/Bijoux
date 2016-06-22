@@ -1,5 +1,9 @@
 #! /bin/sh
 xrandr --output HDMI-0 --off
+if [  ! -d "/run/media/bijan/0DECD1C53869ECB0/Software/Counter-Strike Source" ]; then
+  gksu mkdir "/run/media/bijan/0DECD1C53869ECB0"
+  gksu mount /dev/sda4 "/run/media/bijan/0DECD1C53869ECB0"
+fi
 cd '/run/media/bijan/0DECD1C53869ECB0/Software/Counter-Strike Source'
 wine ./hl2.exe -nomaster -game cstrike -nojoy
 afterCounter
