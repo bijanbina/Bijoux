@@ -1,0 +1,6 @@
+bijan Bijan-PC= NOPASSWD: /usr/bin/corsair.sh
+bijan Bijan-PC= NOPASSWD: /home/bijan/Project/Bijoux/Script/startup.sh
+bijan Bijan-PC= NOPASSWD: /srv/http/Scripts/test.sh
+bijan Bijan-PC= NOPASSWD: /usr/bin/deepin-screenshot 
+http ALL=NOPASSWD: /srv/http/Scripts/test.sh
+bijan Bijan-PC= NOPASSWD: /home/bijan/Project/Bijoux/Script/sudo_nautlis.sh

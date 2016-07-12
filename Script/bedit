@@ -1,4 +1,7 @@
 #!/bin/sh
 filename=$(zenity --entry --text "Please enter filename");
-gedit --new-window $filename &
-disown 
+if [ ! -z $filename ]; then
+	gedit --new-window $filename &
+	disown 
+fi
+
