@@ -1,0 +1,3 @@
+# GTK Enable light theme on a application
+GTK_THEME=Adwaita:light
+Exec=env GTK_THEME=Adwaita:dark eog %U

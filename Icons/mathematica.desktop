@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Icon=wolfram-mathematica
+Name=Mathematica
+Comment=wolfram-mathematica
+Exec=/usr/local/Wolfram/Mathematica/10.0/Executables/mathematica
+Categories=Development;
+MimeType=text/x-mathematica;
