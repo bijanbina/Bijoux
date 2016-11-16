@@ -1,0 +1,12 @@
+[Unit]
+Description=Run start_my_connection
+After=suspend.target
+#After=hibernate.target
+#After=hybrid-sleep.target
+
+[Service]
+ExecStart=/home/bijan/Downloads/mammad/mouse-suspend.sh
+KillMode=process
+
+[Install]
+WantedBy=suspend.target

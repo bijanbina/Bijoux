@@ -1,6 +1,10 @@
 #!/bin/bash
+set -x
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>/tmp/startup_log 2>&1
+# Everything below will go to the file 'log.out':
 xbindkeys &
-sudo corsair.sh
 sudo mkdir /run/media/bijan/05559660-a641-4a23-b880-250c19048db1/
 sudo mkdir /run/media/bijan/0DECD1C53869ECB0/
 sudo mount /dev/sdb6 /run/media/bijan/05559660-a641-4a23-b880-250c19048db1/
@@ -16,3 +20,4 @@ sudo cpupower frequency-set -d 2.5GHz
 xbindkeys &
 echo "hi"
 sudo /usr/bin/systemctl start nmbd.service
+/home/bijan/Downloads/mammad/mouse-suspend.sh
