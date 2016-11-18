@@ -29,5 +29,5 @@ echo -n "Install Laptop Power Saving Mode [y/n]: "
 read answer
 if [ $answer == 'y' ]; then
 	pacman -S tlp
-	cp ../Tweaks/tlp /etc/dafaults/
+	cp ../Tweaks/tlp /etc/dafault/
 fi
