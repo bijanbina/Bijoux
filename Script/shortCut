@@ -1,0 +1,38 @@
+#!/bin/bash
+while read -r line
+do
+	if [ "$line" == "key press   50" ];then
+		STARTTIME=$(($(date +%s%N)/1000000))
+		while read -r line
+		do
+			if [ "$line" == "key release 50" ];then
+				ENDTIME=$(($(date +%s%N)/1000000))
+				if [ "$(($ENDTIME - $STARTTIME))" -lt "200" ];then
+					wmctrl -s 0
+					break
+				else
+					break
+				fi
+			else
+				break
+			fi
+		done < <(xinput test 13)
+	fi
+	if [ "$line" == "key press   37" ];then
+		STARTTIME=$(($(date +%s%N)/1000000))
+		while read -r line
+		do
+			if [ "$line" == "key release 37" ];then
+				ENDTIME=$(($(date +%s%N)/1000000))
+				if [ "$(($ENDTIME - $STARTTIME))" -lt "200" ];then
+					wmctrl -s 1
+					break
+				else
+					break
+				fi
+			else
+				break
+			fi
+		done < <(xinput test 13)
+	fi
+done < <(xinput test 13)
