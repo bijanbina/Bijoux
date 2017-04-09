@@ -21,3 +21,5 @@ xbindkeys &
 echo "hi"
 sudo /usr/bin/systemctl start nmbd.service
 /home/bijan/Downloads/mammad/mouse-suspend.sh
+#vmware
+sudo /home/bijan/Project/Bijoux/Script/startup_root.sh
