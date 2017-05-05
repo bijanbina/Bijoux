@@ -1,0 +1,10 @@
+#!/bin/sh
+if [ ! -d /tmp/Bijan-Home ]; then
+	mkdir /tmp/Bijan-Home
+fi
+if [ ! -d /tmp/Bijan-Home/bijan ]; then
+	echo "Mount Bijan"
+	sudo mount -t cifs -o username=bijan,password=bagverb //192.168.88.25/homes /tmp/Bijan-Home
+fi
+#sync recursive with verbose output
+cp -r -u -v /tmp/Bijan-Home/bijan/Documents/HW/* /home/bijan/Documents/UT/HW/
