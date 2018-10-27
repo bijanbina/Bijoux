@@ -1,0 +1,15 @@
+#! /bin/sh
+gvim "$@" > /dev/null &
+sleep 0.8
+status=0
+
+while [ $status -eq 0 ]
+
+do
+
+sleep 0.1
+
+status=`wmctrl -x -l | grep -i "GVim" | wc -l`
+
+done
+wmctrl -r `xdotool getwindowfocus getwindowname` -b toggle,fullscreen;wmctrl -a `xdotool getwindowfocus getwindowname`
