@@ -17,9 +17,12 @@ amixer -c 0 sset "Headphone" on
 #xinput set-prop 12 "Device Accel Constant Deceleration" 1.5
 xinput set-prop 9 "Device Accel Constant Deceleration" 1.4
 sudo cpupower frequency-set -d 2.5GHz
-xbindkeys &
+#FIXME (START)
+#xbindkeys & need to run as bijan (currently run as root)
+#Error : /root/.xbindkeysrc not found or reading not allowed.
+#FIXME (END)
 echo "hi"
 sudo /usr/bin/systemctl start nmbd.service
-/home/bijan/Downloads/mammad/mouse-suspend.sh
+/home/bijan/Project/Bijoux/Tweaks/Mice/mouse-suspend.sh
 #vmware
 sudo /home/bijan/Project/Bijoux/Script/startup_root.sh
