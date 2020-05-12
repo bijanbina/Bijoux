@@ -5,7 +5,7 @@ After=suspend.target
 #After=hybrid-sleep.target
 
 [Service]
-ExecStart=/home/bijan/Projects/scripts/backup.sh
+ExecStart=/home/bijan/Projects/Bijoux/Tweaks/Backup/faraz_backup.sh
 KillMode=process
 
 [Install]

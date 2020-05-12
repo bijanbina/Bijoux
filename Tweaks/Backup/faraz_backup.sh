@@ -1,9 +1,5 @@
 #! /bin/sh
 
-ip_host=192.168.1.122
-ip_system1=192.168.1.121
-ip_system2=192.168.1.120
-
 if [ ! -d /tmp/system1 ]; then
 	mkdir /tmp/system1
 fi
@@ -15,7 +11,7 @@ fi
 
 while :
 do
-	xterm -e ./backup_raw.sh
+	/home/bijan/Projects/Bijoux/Tweaks/Backup/backup_raw.sh
 	wait
 done
 
