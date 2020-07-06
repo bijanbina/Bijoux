@@ -11,15 +11,15 @@ if [ "$response" = "y" ]; then
 fi
 
 if [ ! -d "/usr/share/netSync" ]; then
-	mkdir -p "/usr/share/netSync"
+	sudo mkdir -p "/usr/share/netSync"
 fi
 
 sudo cp ./icon.png /usr/share/netSync/icon.png
 
 sudo cp ./ns_variables.sh /usr/bin/ns_variables
 sudo cp ./netSync.sh /usr/bin/netSync
+sudo cp ./ns_force.sh /usr/bin/ns_force
 sudo cp ./ns_init.sh /usr/bin/ns_init
-sudo cp ./ns_cinterval.sh /usr/bin/ns_cinterval
 sudo cp ./ns_conflict.sh /usr/bin/ns_conflict
 sudo cp ./ns_cleaner.sh /usr/bin/ns_cleaner
 sudo cp ./ns_mount.sh /usr/bin/ns_mount
@@ -33,8 +33,8 @@ sudo cp ./ns_conflict.py /usr/bin/ns_conflict.py
 
 sudo chmod +x /usr/bin/ns_variables
 sudo chmod +x /usr/bin/netSync
+sudo chmod +x /usr/bin/ns_force
 sudo chmod +x /usr/bin/ns_init
-sudo chmod +x /usr/bin/ns_cinterval
 sudo chmod +x /usr/bin/ns_conflict
 sudo chmod +x /usr/bin/ns_cleaner
 sudo chmod +x /usr/bin/ns_mount

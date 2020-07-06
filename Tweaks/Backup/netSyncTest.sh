@@ -26,12 +26,6 @@ done
 
 while true; do
 
-	# ns_cinterval
-	# if [ "$?" -eq 1 ]; then
-	# 	echo "Sleep $SLEEP_TIME_S"
-	# 	# sleep "$SLEEP_TIME_S"
-	# fi
-
 	echo
 	echo "1 - ns_mount: Mount servers"
 	echo "2 - ns_pull: Pull data from servers"
@@ -52,15 +46,8 @@ while true; do
 	fi
 
 	if [[ "$response_main" == *"1"* ]]; then
-		ns_mount
-
-		RETRUN_CODE="$?"
-		if [ "$RETRUN_CODE" -ne 0 ]; then
-			notify-send -i "/usr/share/netSync/icon.png" "Net Sync Backup" "Failed to mount Server${RETRUN_CODE}"
-			continue
-		fi
-
-		echo "ns_mount = $RETRUN_CODE" 
+		ns_mount || exit 1
+		echo "ns_mount = $?" 
 	fi
 
 	if [[ "$response_main" == *"2"* ]]; then
@@ -101,7 +88,5 @@ while true; do
 	if [[ "$response_main" == *"0"* ]]; then
 		break
 	fi
-
-	# date "+%s" > "$PATH_LOCAL/last_run"
 
 done

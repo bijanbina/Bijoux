@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Name: Net Sync Mount servers in /tmp
 # Copyright 2020 Faraz Corporation (Author: Sajad Dadashi)
 # LGPL v2.0
