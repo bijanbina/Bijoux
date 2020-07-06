@@ -7,19 +7,7 @@
 # This script should be run by activating netSync services 
 # from systemctl.
 
-export IP_HOST=192.168.1.122
-export PATH_LOCAL=/mnt/hdd2/Backup
-export IP_SERVER1=192.168.1.131
-export SERVER1_USER="username=bijan,password=hello"
-export IP_SERVER2=192.168.1.132
-export SERVER2_USER="username=bijan,password=seed95"
-export SERVER_COUNT=2
-export TEMP_FOLDER="$PATH_LOCAL/.temp"
-
-export BACKUP_PERIOD=3 # Minimal time between each backup proccess [Hour]
-CHECK_TIMEOUT=10 # Time between each checking sync cycle [Minute]
-CHECK_TIMEOUT_S=$(( 60*CHECK_TIMEOUT )) # Check timeout time in second
-MOUNT_SLEEP=600 # Second
+source ns_variables.sh
 
 ns_init || exit 1
 

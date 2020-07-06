@@ -10,18 +10,7 @@
 CURR_DIR=$(pwd)
 ./installSync.sh
 
-export IP_HOST=192.168.1.122
-export PATH_LOCAL=/mnt/hdd2/Backup
-export IP_SERVER1=192.168.1.131
-export SERVER1_USER="username=bijan,password=hello"
-export IP_SERVER2=192.168.1.132
-export SERVER2_USER="username=bijan,password=seed95"
-export SERVER_COUNT=2
-export TEMP_FOLDER="$PATH_LOCAL/.temp"
-
-export INTERVAL_BACKUP=3 # Hour
-SLEEP_TIME=10 # Minute
-SLEEP_TIME_S=$(( 60*SLEEP_TIME ))
+source ns_variables.sh
 
 ns_init || exit 1
 

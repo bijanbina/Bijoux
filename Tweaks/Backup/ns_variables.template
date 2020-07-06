@@ -1,0 +1,20 @@
+#! /bin/bash
+# Name: Setup Variables
+# Copyright 2020 Faraz Corporation (Author: Sajad Dadashi)
+# LGPL v2.0
+# Fill these variables and save it to setup_variables.sh
+# then run installSync.sh
+
+export SERVER_COUNT=2
+export PATH_LOCAL=/path/to/backup/temp/folder
+export IP_SERVER1=192.168.1.1
+export SERVER1_USER="username=user1,password=pass1"
+export IP_SERVER2=192.168.1.1
+export SERVER2_USER="username=user2,password=pass2"
+
+export BACKUP_PERIOD=3 # Minimal time between each backup proccess [Hour]
+export CHECK_TIMEOUT=10 # Time between each checking sync cycle [Minute]
+export CHECK_TIMEOUT_S=$(( 60*CHECK_TIMEOUT )) # Check timeout time in second
+export MOUNT_SLEEP=600 # Second
+
+export TEMP_FOLDER="$PATH_LOCAL/.temp"
