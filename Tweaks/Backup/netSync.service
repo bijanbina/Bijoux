@@ -5,7 +5,7 @@ After=suspend.target
 #After=hybrid-sleep.target
 
 [Service]
-ExecStart=/home/bijan/Projects/Bijoux/Tweaks/Backup/faraz_backup.sh
+ExecStart=/usr/bin/netSync
 KillMode=process
 
 [Install]

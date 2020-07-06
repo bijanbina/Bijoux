@@ -1,0 +1,50 @@
+#!/bin/bash
+# Name: Net Sync Conflict
+# Copyright 2020 Faraz Corporation (Author: Sajad Dadashi)
+# LGPL v2.0
+# This script should be call from netSync.sh 
+# to define required envirovmental variables.
+# Usage: ns_conflict.sh
+
+# Save cuurent directory to be resotred upon exit
+CURR_DIR=$(pwd)
+
+if [ -z ${PATH_LOCAL+x} ]; then 
+	echo "Please run net sync first to define envirovment variables."
+	exit 1
+fi
+
+# Directory name for conflicts files.
+cd "$PATH_LOCAL/conflicts"
+DATE=$(date "+%m%d%y")
+DIR_NAME="${DATE}_1"
+if [ -d "$DIR_NAME" ]; then
+	CNT=$(ls | grep "${DATE}_" | awk -F '_' '{print $NF}' | sort -nr | head -n1)
+	CNT=$(($CNT + 1))
+	DIR_NAME="${DATE}_${CNT}"
+fi
+DIR_NAME="${PATH_LOCAL}/conflicts/${DIR_NAME}"
+
+# Find files in host and servers
+cd "$PATH_LOCAL/host"
+find . -type f > "$TEMP_FOLDER/host_files"
+for i in $(seq 1 $SERVER_COUNT)
+do
+	cd "$PATH_LOCAL/server${i}"
+	find . -type f > "$TEMP_FOLDER/server${i}_files"
+done
+
+# Create files name for make reference file
+FILENAME="host_files"
+for i in $(seq 1 $SERVER_COUNT)
+do
+	FILENAME="$FILENAME server${i}_files"
+done
+
+# Create reference list for handle conflict files in servers and host
+cd "$TEMP_FOLDER"
+sort $FILENAME | uniq > reference_file
+
+python3 /usr/bin/ns_conflict.py "$PATH_LOCAL" "$SERVER_COUNT" "$TEMP_FOLDER/reference_file" "$DIR_NAME" "$PATH_LOCAL/log_conflict"
+
+cd "$CURR_DIR"
