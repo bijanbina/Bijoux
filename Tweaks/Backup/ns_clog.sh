@@ -15,10 +15,15 @@ fi
 
 cd "$PATH_LOCAL"
 > log
-> log1
-> log2
+for i in $(seq 1 $SERVER_COUNT)
+do
+	> "log${i}"
+done
+# > log1
+# > log2 #FIXME: for based on SERVER_COUNT
 > log_conflict
 > log_delete
 > log_error
+> log_cleaner
 
 cd "$CURR_DIR"

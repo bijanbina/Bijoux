@@ -7,39 +7,15 @@
 # This script should be run by activating netSync services 
 # from systemctl.
 
-function updateSyncTime {
-	TIME="$1"
-	CURR_TIME=$(date "+%s")
-	TIME_TO_RUN=$(( $CURR_TIME + $TIME ))
-	echo "$TIME_TO_RUN" > "$PATH_LOCAL/sync_time"
-}
-
-function checkInterval {
-	CURR_TIME=$(date "+%s")
-	
-	if [ ! -f "$PATH_LOCAL/sync_time" ]; then
-		cat "$CURR_TIME" > "$PATH_LOCAL/sync_time"
-	fi
-
-	TIME_TO_RUN=$(cat "$PATH_LOCAL/sync_time")
-	if [ ! -z "$TIME_TO_RUN" ]; then
-		if [ "$TIME_TO_RUN" -gt "$CURR_TIME" ]; then
-			sleep "$CHECK_TIMEOUT_S"
-			return 1
-		fi
-	fi
-
-	return 0
-}
-
 source ns_variables.sh
+source ns_functions.sh
 
 ns_init || exit 1
 
 while :
 do
 
-	checkInterval || continue # Wait for sync time to reach 
+	ns_checkInterval || continue # Wait for sync time to reach 
 
 	ns_mount # Mount servers
 	RETRUN_CODE="$?"
@@ -72,6 +48,8 @@ do
 	ns_pull || exit 1 # Pull data from servers
 
 	ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
+
+	ns_check || exit 1 # Check file names includes spaces or special character
 	
 	ns_conflict || exit 1
 
@@ -88,5 +66,5 @@ do
 	echo $(date "+%D %R") ": Finish script" >> "$PATH_LOCAL/log"
 
 	BACKUP_PERIOD_S=$(( 60*60*BACKUP_PERIOD ))
-	updateSyncTime "$BACKUP_PERIOD_S"
+	ns_updateSyncTime "$BACKUP_PERIOD_S"
 done

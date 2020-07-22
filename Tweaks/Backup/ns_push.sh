@@ -14,10 +14,10 @@ if [ -z ${PATH_LOCAL+x} ]; then
 	exit 1
 fi
 
-# Copy from local host to local servers
+# Copy from local host to servers
 for i in $(seq 1 $SERVER_COUNT)
 do
-	echo $(date "+%D %R") ": Start copy from local host to server${i}" >> "$PATH_LOCAL/log"
+	echo $(date "+%D %R") "<push>: Start copy from local host to server${i}" >> "$PATH_LOCAL/log"
 	sudo rsync -rutv --delete-excluded "$PATH_LOCAL/host/." "/tmp/server${i}" >> "$PATH_LOCAL/log${i}"
 done
 

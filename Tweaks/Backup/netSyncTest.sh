@@ -11,6 +11,8 @@ CURR_DIR=$(pwd)
 ./installSync.sh
 
 source ns_variables.sh
+source ns_functions.sh
+export PATH_LOCAL=/mnt/hdd2/BackupTest
 
 ns_init || exit 1
 
@@ -30,13 +32,15 @@ while true; do
 	echo "1 - ns_mount: Mount servers"
 	echo "2 - ns_pull: Pull data from servers"
 	echo "3 - ns_cleaner: Remove space and delete spurious files"
-	echo "4 - ns_conflict: Resolve conflict between servers"
-	echo "5 - ns_local: Sync local servers and host for deleted files"
-	echo "6 - ns_push: Push backup data from local to servers"
-	echo "7 - ns_umount: Unmount servers"
-	echo "8 - ns_clog: Clear logs"
+	echo "4 - ns_check: Check space and special character"
+	echo "5 - ns_conflict: Resolve conflict between servers"
+	echo "6 - ns_local: Sync local servers and host for deleted files"
+	echo "7 - ns_push: Push backup data from local to servers"
+	echo "8 - ns_umount: Unmount servers"
+	echo "9 - ns_clog: Clear logs"
 	echo "0 - Exit"
 	echo
+
 
 	printf "Command>> "
 	read response_main
@@ -61,29 +65,35 @@ while true; do
 	fi
 
 	if [[ "$response_main" == *"4"* ]]; then
+		ns_check || exit 1
+		echo "ns_check = $?"
+	fi
+
+	if [[ "$response_main" == *"5"* ]]; then
 		ns_conflict || exit 1
 		echo "ns_conflict = $?"
 	fi
 
-	if [[ "$response_main" == *"5"* ]]; then
+	if [[ "$response_main" == *"6"* ]]; then
 		ns_local || exit 1
 		echo "ns_local = $?"
 	fi
 
-	if [[ "$response_main" == *"6"* ]]; then
+	if [[ "$response_main" == *"7"* ]]; then
 		ns_push || exit 1
 		echo "ns_push = $?"
 	fi
 
-	if [[ "$response_main" == *"7"* ]]; then
+	if [[ "$response_main" == *"8"* ]]; then
 		ns_umount || exit 1
 		echo "ns_umount = $?"
 	fi
 
-	if [[ "$response_main" == *"8"* ]]; then
+	if [[ "$response_main" == *"9"* ]]; then
 		ns_clog || exit 1
 		echo "ns_clog = $?"
 	fi
+
 
 	if [[ "$response_main" == *"0"* ]]; then
 		break

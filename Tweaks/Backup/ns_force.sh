@@ -5,13 +5,7 @@
 # Force to syncronize servers
 
 source ns_variables.sh
-
-function updateSyncTime {
-	TIME="$1"
-	CURR_TIME=$(date "+%s")
-	TIME_TO_RUN=$(( $CURR_TIME + $TIME ))
-	echo "$TIME_TO_RUN" > "$PATH_LOCAL/sync_time"
-}
+source ns_functions
 
 ns_init || exit 1
 
@@ -20,6 +14,8 @@ ns_mount || exit 1 # Mount servers
 ns_pull || exit 1 # Pull data from servers
 
 ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
+
+ns_check || exit 1 # Check file names includes spaces or special character
 
 ns_conflict || exit 1
 
@@ -36,4 +32,4 @@ fi
 echo "Sync completed."
 
 BACKUP_PERIOD_S=$(( 60*60*BACKUP_PERIOD ))
-updateSyncTime "$BACKUP_PERIOD_S"
+ns_updateSyncTime "$BACKUP_PERIOD_S"

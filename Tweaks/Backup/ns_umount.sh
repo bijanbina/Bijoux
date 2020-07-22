@@ -15,7 +15,7 @@ for i in $(seq 1 $SERVER_COUNT)
 do
 
 	if [ -d "/tmp/server${i}/SVN" ]; then
-		echo $(date "+%D %R") ": Start unmount server${i}" >> "$PATH_LOCAL/log"
+		echo $(date "+%D %R") "<umount>: Start unmount server${i}" >> "$PATH_LOCAL/log"
 		sudo umount "/tmp/server${i}"
 	fi
 

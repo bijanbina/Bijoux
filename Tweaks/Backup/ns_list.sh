@@ -12,11 +12,20 @@ if [ -z ${PATH_LOCAL+x} ]; then
 	exit 1
 fi
 
+if [ -f "$TEMP_FOLDER/host_list" ]; then
+	rm "$TEMP_FOLDER/host_list"
+fi
+
 cd "$PATH_LOCAL/host"
 find * | tac > "$TEMP_FOLDER/host_list"
 
 for i in $(seq 1 $SERVER_COUNT)
 do
+
+	if [ -f "$TEMP_FOLDER/server${i}_list" ]; then
+		rm "$TEMP_FOLDER/server${i}_list"
+	fi
+
 	cd "$PATH_LOCAL/server${i}"
 	find * > "$TEMP_FOLDER/server${i}_list"
 done

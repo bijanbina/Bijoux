@@ -14,6 +14,6 @@ fi
 
 for i in $(seq 1 $SERVER_COUNT)
 do
-	rsync -rutv --delete /tmp/server${i} "$PATH_LOCAL" >> "$PATH_LOCAL/log${i}"
-	echo $(date "+%D %R") ": rsync server${i} completed" >> "$PATH_LOCAL/log"
+	rsync -rutv --delete "/tmp/server${i}" "$PATH_LOCAL" >> "$PATH_LOCAL/log${i}"
+	echo $(date "+%D %R") "<pull>: rsync server${i} completed" >> "$PATH_LOCAL/log"
 done
