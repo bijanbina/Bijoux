@@ -73,6 +73,8 @@ if __name__ == '__main__':
 		file_dir = os.path.relpath(os.path.join(filename, os.pardir))
 
 		for i,server_id in enumerate(date_arg_sorted):
+			if date_files[server_id] == -1:
+				continue
 			if host_date_file < date_files[server_id]:
 				if i > 0:
 					if date_files[date_arg_sorted[i]] == date_files[date_arg_sorted[i-1]]: # stop in case of rest of files are the same
@@ -87,9 +89,13 @@ if __name__ == '__main__':
 						date = datetime.now().strftime("%m/%d/%Y %H:%M")
 						log_msg = date + ' <conflict.py>: server' + str(server_id+1) + ' -> conflict ' + '[' + filename + ']' 
 						print(log_msg, file = log_conflict)	
-			elif host_date_file > date_files[server_id]: 
+			elif int(host_date_file) > int(date_files[server_id]): 
 				date = datetime.now().strftime("%m/%d/%Y %H:%M")
-				log_msg = date + ' <conflict.py>: host date file > server' + str(server_id+1) + ' date file ' + '[' + filename + ']' 
+				log_msg = date + ' <conflict.py>: host date file > server' + str(server_id+1) + ' date file ' + '[' + filename + ']'
+				date_host = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(host_date_file))
+				date_server = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(date_files[server_id]))
+				log_msg += '\nhost: ' + str(date_host) + ' (' + str(int(host_date_file)) + ')'
+				log_msg += ', server' + str(server_id+1) + ': ' + str(date_server) + ' (' + str(int(date_files[server_id])) + ')'
 				print(log_msg, file = error_f)
 				log_conflict.close()
 				error_f.close()

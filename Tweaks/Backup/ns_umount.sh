@@ -16,7 +16,7 @@ do
 
 	if [ -d "/tmp/server${i}/SVN" ]; then
 		echo $(date "+%D %R") "<umount>: Start unmount server${i}" >> "$PATH_LOCAL/log"
-		sudo umount "/tmp/server${i}"
+		sudo umount -f "/tmp/server${i}"
 	fi
 
 done

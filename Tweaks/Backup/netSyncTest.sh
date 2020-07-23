@@ -12,7 +12,7 @@ CURR_DIR=$(pwd)
 
 source ns_variables.sh
 source ns_functions.sh
-export PATH_LOCAL=/mnt/hdd2/BackupTest
+# export PATH_LOCAL=/mnt/hdd2/BackupTest
 
 ns_init || exit 1
 

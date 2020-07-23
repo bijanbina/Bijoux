@@ -5,7 +5,7 @@
 # Force to syncronize servers
 
 source ns_variables.sh
-source ns_functions
+source ns_functions.sh
 
 ns_init || exit 1
 
