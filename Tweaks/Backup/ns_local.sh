@@ -30,7 +30,6 @@ mkdir -p "$DIR_NAME"
 
 # Sync local servers and host for deleted files
 echo $(date "+%D %R") "<local>: Sync local servers and host" >> "$PATH_LOCAL/log"
-echo
 while read p
 do
 
@@ -83,8 +82,6 @@ CHECK_DIR=$(ls -A "$DIR_NAME")
 if [ ! "$CHECK_DIR" ]; then
 	rmdir "$DIR_NAME"
 fi
-
-echo
 
 # Update host
 for i in $(seq 1 $SERVER_COUNT)

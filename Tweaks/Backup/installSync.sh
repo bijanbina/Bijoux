@@ -17,6 +17,7 @@ fi
 sudo cp ./icon.png /usr/share/netSync/icon.png
 
 sudo cp ./ns_variables.sh /usr/bin/ns_variables.sh
+sudo cp ./ns_functions.sh /usr/bin/ns_functions.sh 
 sudo cp ./netSync.sh /usr/bin/netSync
 sudo cp ./ns_force.sh /usr/bin/ns_force
 sudo cp ./ns_init.sh /usr/bin/ns_init
@@ -33,6 +34,7 @@ sudo cp ./ns_clog.sh /usr/bin/ns_clog
 sudo cp ./ns_conflict.py /usr/bin/ns_conflict.py
 
 sudo chmod +x /usr/bin/ns_variables.sh
+sudo chmod +x /usr/bin/ns_functions.sh
 sudo chmod +x /usr/bin/netSync
 sudo chmod +x /usr/bin/ns_force
 sudo chmod +x /usr/bin/ns_init

@@ -76,6 +76,9 @@ if __name__ == '__main__':
 			if date_files[server_id] == -1:
 				continue
 			if host_date_file < date_files[server_id]:
+				if i == 0: # in case of latest modified file 
+					log_msg = 'conflict: server' + str(server_id+1) + ' -> latest modified ' + '[' + filename + ']' 
+					print(log_msg)
 				if i > 0:
 					if date_files[date_arg_sorted[i]] == date_files[date_arg_sorted[i-1]]: # stop in case of rest of files are the same
 						break

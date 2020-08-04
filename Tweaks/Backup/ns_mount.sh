@@ -6,6 +6,9 @@
 # to define required envirovmental variables.
 # Usage: ns_mount.sh
 
+# sudo mount -t cifs -o "username=bijan,password=**" //192.168.1.***/Home /tmp/server2
+
+
 if [ -z ${PATH_LOCAL+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
