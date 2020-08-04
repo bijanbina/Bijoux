@@ -57,6 +57,8 @@ do
 	
 	ns_push || exit 1 # Push backup data from local to servers
 
+	ns_umount || exit 1 # Unmount servers
+
 	# Remove temp files
 	cd "$TEMP_FOLDER"
 	if [ $(ls | wc -l) -ne 0 ]; then
