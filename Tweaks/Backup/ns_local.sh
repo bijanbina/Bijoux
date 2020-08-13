@@ -40,14 +40,6 @@ do
 
 		if [ -z "$CHECK_FILE" ]; then
 
-			# Move this segment to ns_check.sh
-			# CHECK_FILE=$(echo "$p" | grep "\[")
-			# if [ ! -z "$CHECK_FILE" ]; then
-			# 	echo $(date "+%D %R") ": error in file name $p " >> "$PATH_LOCAL/log_error"
-			# 	echo "error in file name $p"
-			# 	break
-			# fi
-
 			echo $(date "+%D %R") ":(server${i}) $p " >> "$PATH_LOCAL/log_delete"
 			# printf "delete: server${i} ---> $p                                                 \r"
 			echo "delete: server${i} ---> $p"

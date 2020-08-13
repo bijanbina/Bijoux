@@ -1,5 +1,5 @@
 #!/bin/python3
-# Name: Net Sync Create Modification Date
+# Name: Net Sync Conflict
 # Handle files in servers with difference modification date
 # from host and copy files in confilicts folder
 # Input: 
@@ -8,7 +8,7 @@
 #		3. Reference file for read all files in servers and host
 #		4. Directory name for copy conflict files
 #		5. Log file name
-# example: python ns_create_md 2 /mnt/hdd2/Backup/reference_list 200520
+# example: python3 ns_conflict.py <path-local> <server-count> <reference-list> <dir-name-conflict>
 
 
 import os
@@ -59,7 +59,6 @@ if __name__ == '__main__':
 					date_files.append(curr_time)
 				else:
 					date_files.append(df)
-				# date_files.append(os.path.getmtime(path_file))
 			except FileNotFoundError:
 				date_files.append(-1)
 
@@ -77,7 +76,7 @@ if __name__ == '__main__':
 				continue
 			if host_date_file < date_files[server_id]:
 				if i == 0: # in case of latest modified file 
-					log_msg = 'conflict: server' + str(server_id+1) + ' -> latest modified ' + '[' + filename + ']' 
+					log_msg = 'modified: server' + str(server_id+1) + ' ---> ' +filename
 					print(log_msg)
 				if i > 0:
 					if date_files[date_arg_sorted[i]] == date_files[date_arg_sorted[i-1]]: # stop in case of rest of files are the same

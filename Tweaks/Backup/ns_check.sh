@@ -20,17 +20,18 @@ do
 
 	cd "$PATH_LOCAL/server${i}"
 
+	# FIXME: discomment may contain an atomic bomb
 	# Check space in file name
-	CHECK_SPACE=$( find . | grep ' ' )
-	if [ ! -z "$CHECK_SPACE" ]; then
-		echo $(date "+%D %R") "<check>: Server${i} have space in file name" >> "$PATH_LOCAL/log"
-		echo "$CHECK_SPACE" >> "$PATH_LOCAL/log"
-		echo "Error 101: File name contain space charaters and cannot automatically solved by ns_cleaner"
-		exit 1
-	fi
+	# CHECK_SPACE=$( find . | grep ' ' )
+	# if [ ! -z "$CHECK_SPACE" ]; then
+	# 	echo $(date "+%D %R") "<check>: Server${i} have space in file name" >> "$PATH_LOCAL/log"
+	# 	echo "$CHECK_SPACE" >> "$PATH_LOCAL/log"
+	# 	echo "Error 101: File name contain space charaters and cannot automatically solved by ns_cleaner"
+	# 	exit 1
+	# fi
 
 	# Check special character in file name
-	CHECK_SPECIAL=$( find . | grep '[^a-zA-Z0-9_-\+\/.]' )
+	CHECK_SPECIAL=$( find . | grep '[^a-zA-Z0-9+/._-]' )
 	if [ ! -z "$CHECK_SPECIAL" ]; then
 		echo $(date "+%D %R") "<check>: Server${i} have special character in file name" >> "$PATH_LOCAL/log"
 		echo "$CHECK_SPECIAL" >> "$PATH_LOCAL/log"
