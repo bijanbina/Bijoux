@@ -40,27 +40,30 @@ do
 
 		if [ -z "$CHECK_FILE" ]; then
 
-			echo $(date "+%D %R") ":(server${i}) $p " >> "$PATH_LOCAL/log_delete"
-			# printf "delete: server${i} ---> $p                                                 \r"
 			echo "delete: server${i} ---> $p"
+			if [ "$DIFF_MODE" -eq "0" ];then 
 
-			DELETED_PATH_FILE=$(dirname "$p")
-			mkdir -p "${DIR_NAME}/host/$DELETED_PATH_FILE"
-			cp -rup "$PATH_LOCAL/host/$p" "${DIR_NAME}/host/$DELETED_PATH_FILE"
-			rm -dr "$PATH_LOCAL/host/$p"
+				echo $(date "+%D %R") ":(server${i}) $p " >> "$PATH_LOCAL/log_delete"
+				# printf "delete: server${i} ---> $p                                                 \r"
 
-			for j in $(seq 1 $SERVER_COUNT)
-			do
+				DELETED_PATH_FILE=$(dirname "$p")
+				mkdir -p "${DIR_NAME}/host/$DELETED_PATH_FILE"
+				cp -rup "$PATH_LOCAL/host/$p" "${DIR_NAME}/host/$DELETED_PATH_FILE"
+				rm -dr "$PATH_LOCAL/host/$p"
 
-				if [ "$i" -ne "$j" ]; then
-					if [ -e "$PATH_LOCAL/server${j}/$p" ]; then
-						mkdir -p "${DIR_NAME}/server${j}/$DELETED_PATH_FILE"
-						cp -rup "$PATH_LOCAL/server${j}/$p" "${DIR_NAME}/server${j}/$DELETED_PATH_FILE"
-						rm -dr "$PATH_LOCAL/server${j}/$p"
+				for j in $(seq 1 $SERVER_COUNT)
+				do
+
+					if [ "$i" -ne "$j" ]; then
+						if [ -e "$PATH_LOCAL/server${j}/$p" ]; then
+							mkdir -p "${DIR_NAME}/server${j}/$DELETED_PATH_FILE"
+							cp -rup "$PATH_LOCAL/server${j}/$p" "${DIR_NAME}/server${j}/$DELETED_PATH_FILE"
+							rm -dr "$PATH_LOCAL/server${j}/$p"
+						fi
 					fi
-				fi
 
-			done
+				done
+			fi
 
 			break
 		fi
@@ -75,18 +78,23 @@ if [ ! "$CHECK_DIR" ]; then
 	rmdir "$DIR_NAME"
 fi
 
-# Update host
-for i in $(seq 1 $SERVER_COUNT)
-do
-	echo $(date "+%D %R") "<local>: Start copy from local server${i} to host" >> "$PATH_LOCAL/log"
-	cp -rupv "$PATH_LOCAL/server${i}/." "$PATH_LOCAL/host/" >> "$PATH_LOCAL/log${i}"
-done
+if [ "$DIFF_MODE" -eq "0" ]; then # if disable diff mode
 
-# Copy from local host to local servers
-for i in $(seq 1 $SERVER_COUNT)
-do
-	echo $(date "+%D %R") "<local>: Start copy from local host to server${i}" >> "$PATH_LOCAL/log"
-	rsync -rutv --delete-excluded "$PATH_LOCAL/host/." "$PATH_LOCAL/server${i}" >> "$PATH_LOCAL/log${i}"
-done
+	# Update host
+	for i in $(seq 1 $SERVER_COUNT)
+	do
+		echo $(date "+%D %R") "<local>: Start copy from local server${i} to host" >> "$PATH_LOCAL/log"
+		cp -rupv "$PATH_LOCAL/server${i}/." "$PATH_LOCAL/host/" >> "$PATH_LOCAL/log${i}"
+	done
+
+	# Copy from local host to local servers
+	for i in $(seq 1 $SERVER_COUNT)
+	do
+		echo $(date "+%D %R") "<local>: Start copy from local host to server${i}" >> "$PATH_LOCAL/log"
+		rsync -rutv --delete-excluded "$PATH_LOCAL/host/." "$PATH_LOCAL/server${i}" >> "$PATH_LOCAL/log${i}"
+	done
+
+fi
+
 
 cd "$CURR_DIR"

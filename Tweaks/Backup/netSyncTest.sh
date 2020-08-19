@@ -7,6 +7,8 @@
 # This script should be run by activating netSync services 
 # from systemctl.
 
+export DIFF_MODE="1"
+
 CURR_DIR=$(pwd)
 ./installSync.sh
 

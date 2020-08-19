@@ -7,6 +7,8 @@
 # This script should be run by activating netSync services 
 # from systemctl.
 
+export DIFF_MODE="0"
+
 source ns_variables.sh
 source ns_functions.sh
 

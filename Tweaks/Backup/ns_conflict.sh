@@ -24,6 +24,7 @@ if [ -d "$DIR_NAME" ]; then
 	DIR_NAME="${DATE}_${CNT}"
 fi
 DIR_NAME="${PATH_LOCAL}/conflicts/${DIR_NAME}"
+mkdir -p "$DIR_NAME"
 
 # Find files in host and servers
 cd "$PATH_LOCAL/host"
@@ -45,10 +46,16 @@ done
 cd "$TEMP_FOLDER"
 sort $FILENAME | uniq > reference_file
 
-python3 /usr/bin/ns_conflict.py "$PATH_LOCAL" "$SERVER_COUNT" "$TEMP_FOLDER/reference_file" "$DIR_NAME"
+python3 /usr/bin/ns_conflict.py "$PATH_LOCAL" "$SERVER_COUNT" "$TEMP_FOLDER/reference_file" "$DIR_NAME" "$DIFF_MODE"
 if [ "$?" -eq 1 ]; then
 	echo "Error 103: Check log_error for details"
 	exit 1
+fi
+
+# Remove conflict direcotry if empty
+CHECK_DIR=$(ls -A "$DIR_NAME")
+if [ ! "$CHECK_DIR" ]; then
+	rmdir "$DIR_NAME"
 fi
 
 cd "$CURR_DIR"

@@ -4,6 +4,8 @@
 # LGPL v2.0
 # Force to syncronize servers
 
+export DIFF_MODE="0"
+
 source ns_variables.sh
 source ns_functions.sh
 
