@@ -20,15 +20,7 @@ echo "ns_cleaner start"
 ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
 
 echo "ns_check start"
-ns_check # Check file names includes spaces or special character
-# RESULT="$?"
-if [ "$?" -eq "1" ]; then
-	CHECK_SPECIAL=$( find . | grep '[^a-zA-Z0-9+/._-]' )
-	if [ ! -z "$CHECK_SPECIAL" ]; then
-		echo "$CHECK_SPECIAL"
-		exit 1
-	fi
-fi
+ns_check || exit 1 # Check file names includes spaces or special character
 
 echo "ns_conflict start"
 ns_conflict || exit 1
