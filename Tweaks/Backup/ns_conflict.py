@@ -88,8 +88,12 @@ if __name__ == '__main__':
 				continue
 			if host_date_file < date_files[server_id]:
 				if i == 0: # in case of latest modified file
+
 					if SERVICE_ENABLE != 1:
-						log_msg = 'modified: server' + str(server_id+1) + ' ---> ' +filename
+						if host_date_file == -1 and date_files[server_id] != -1:
+							log_msg = 'new: server' + str(server_id+1) + ' ---> ' +filename
+						else:
+							log_msg = 'modified: server' + str(server_id+1) + ' ---> ' +filename
 						print(log_msg)
 				if i > 0:
 					if date_files[date_arg_sorted[i]] == date_files[date_arg_sorted[i-1]]: # stop in case of rest of files are the same

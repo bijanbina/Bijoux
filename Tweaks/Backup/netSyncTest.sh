@@ -8,7 +8,7 @@
 # from systemctl.
 
 export DIFF_MODE="1"
-SERVICE_ENABLE="1"
+SERVICE_ENABLE="0"
 
 
 CURR_DIR=$(pwd)
