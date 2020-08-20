@@ -8,6 +8,8 @@
 # from systemctl.
 
 export DIFF_MODE="1"
+SERVICE_ENABLE="1"
+
 
 CURR_DIR=$(pwd)
 ./installSync.sh
@@ -57,7 +59,7 @@ while true; do
 	fi
 
 	if [[ "$response_main" == *"2"* ]]; then
-		ns_pull || exit 1
+		ns_pull "$SERVICE_ENABLE" || exit 1
 		echo "ns_pull = $?"
 	fi
 
@@ -67,17 +69,17 @@ while true; do
 	fi
 
 	if [[ "$response_main" == *"4"* ]]; then
-		ns_check || exit 1
+		ns_check "$SERVICE_ENABLE" || exit 1
 		echo "ns_check = $?"
 	fi
 
 	if [[ "$response_main" == *"5"* ]]; then
-		ns_conflict || exit 1
+		ns_conflict "$SERVICE_ENABLE" || exit 1
 		echo "ns_conflict = $?"
 	fi
 
 	if [[ "$response_main" == *"6"* ]]; then
-		ns_local || exit 1
+		ns_local "$SERVICE_ENABLE" || exit 1
 		echo "ns_local = $?"
 	fi
 

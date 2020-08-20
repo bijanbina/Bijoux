@@ -4,7 +4,8 @@
 # LGPL v2.0
 # This script should be call from netSync.sh 
 # to define required envirovmental variables.
-# Usage: ns_conflict.sh
+# Usage: ns_conflict.sh <service-run>
+# Variable <service-run> set to 1 if call this script in service mode (default value is 0).
 
 # Save cuurent directory to be resotred upon exit
 CURR_DIR=$(pwd)
@@ -12,6 +13,12 @@ CURR_DIR=$(pwd)
 if [ -z ${PATH_LOCAL+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
+fi
+
+if [ "$#" -eq "1" ]; then
+	SERVICE_ENABLE="$1"
+else
+	SERVICE_ENABLE="0"
 fi
 
 # Directory name for conflicts files.
@@ -46,7 +53,7 @@ done
 cd "$TEMP_FOLDER"
 sort $FILENAME | uniq > reference_file
 
-python3 /usr/bin/ns_conflict.py "$PATH_LOCAL" "$SERVER_COUNT" "$TEMP_FOLDER/reference_file" "$DIR_NAME" "$DIFF_MODE"
+python3 /usr/bin/ns_conflict.py "$PATH_LOCAL" "$SERVER_COUNT" "$TEMP_FOLDER/reference_file" "$DIR_NAME" "$DIFF_MODE" "$SERVICE_ENABLE"
 if [ "$?" -eq 1 ]; then
 	echo "Error 103: Check log_error for details"
 	exit 1

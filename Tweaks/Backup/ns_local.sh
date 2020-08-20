@@ -5,13 +5,20 @@
 # LGPL v2.0
 # This script should be call from netSync.sh 
 # to define required envirovmental variables.
-# Usage: ns_local.sh
+# Usage: ns_local.sh <service-run>
+# Variable <service-run> set to 1 if call this script in service mode (default value is 0).
 
 CURR_DIR=$(pwd)
 
 if [ -z ${PATH_LOCAL+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
+fi
+
+if [ "$#" -eq "1" ]; then
+	SERVICE_ENABLE="$1"
+else
+	SERVICE_ENABLE="0"
 fi
 
 ns_list || exit 1 # Fill host_list, servers_list files
@@ -40,7 +47,10 @@ do
 
 		if [ -z "$CHECK_FILE" ]; then
 
-			echo "delete: server${i} ---> $p"
+			if [ "$SERVICE_ENABLE" -ne "1" ];then 
+				echo "delete: server${i} ---> $p"
+			fi
+
 			if [ "$DIFF_MODE" -eq "0" ];then 
 
 				echo $(date "+%D %R") ":(server${i}) $p " >> "$PATH_LOCAL/log_delete"

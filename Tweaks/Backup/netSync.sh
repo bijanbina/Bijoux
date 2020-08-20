@@ -8,6 +8,7 @@
 # from systemctl.
 
 export DIFF_MODE="0"
+SERVICE_ENABLE="1"
 
 source ns_variables.sh
 source ns_functions.sh
@@ -51,11 +52,11 @@ do
 
 	ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
 
-	ns_check || exit 1 # Check file names includes spaces or special character
+	ns_check "$SERVICE_ENABLE" || exit 1 # Check file names includes special character
 	
-	ns_conflict || exit 1
+	ns_conflict "$SERVICE_ENABLE" || exit 1
 
-	ns_local || exit 1 # Sync local servers and host for deleted files
+	ns_local "$SERVICE_ENABLE" || exit 1 # Sync local servers and host for deleted files
 	
 	ns_push || exit 1 # Push backup data from local to servers
 

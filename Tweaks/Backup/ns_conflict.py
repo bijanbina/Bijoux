@@ -9,7 +9,8 @@
 #		4. Directory name for copy conflict files
 #		5. Log file name
 #		6. Difference mode(enable[1], disable[0])
-# example: python3 ns_conflict.py <path-local> <server-count> <reference-list> <dir-name-conflict> <diff-mode>
+#		7. Run script as service(enable[1], disable[0])
+# example: python3 ns_conflict.py <path-local> <server-count> <reference-list> <dir-name-conflict> <diff-mode> <service-enable>
 
 
 import os
@@ -21,7 +22,7 @@ from datetime import datetime
 
 if __name__ == '__main__':
 
-	if len(sys.argv) < 6:
+	if len(sys.argv) < 7:
 		print('Input arguments not enough.')
 		sys.exit(1)
 
@@ -31,6 +32,7 @@ if __name__ == '__main__':
 	DIR_NAME_CONFLICT = sys.argv[4]
 	LOG_CONF_FILE = PATH_LOCAL + "/log_conflict"
 	DIFF_MODE = int(sys.argv[5])
+	SERVICE_ENABLE = int(sys.argv[6])
 
 	log_conflict = open(LOG_CONF_FILE, "a")
 	error_f = open(PATH_LOCAL + "/log_error", "a")
@@ -85,9 +87,10 @@ if __name__ == '__main__':
 			if date_files[server_id] == -1:
 				continue
 			if host_date_file < date_files[server_id]:
-				if i == 0: # in case of latest modified file 
-					log_msg = 'modified: server' + str(server_id+1) + ' ---> ' +filename
-					print(log_msg)
+				if i == 0: # in case of latest modified file
+					if SERVICE_ENABLE != 1:
+						log_msg = 'modified: server' + str(server_id+1) + ' ---> ' +filename
+						print(log_msg)
 				if i > 0:
 					if date_files[date_arg_sorted[i]] == date_files[date_arg_sorted[i-1]]: # stop in case of rest of files are the same
 						break

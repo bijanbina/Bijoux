@@ -43,7 +43,7 @@ do
 		if [ "$SERVICE" -eq "1" ]; then
 			echo $(date "+%D %R") "<check>: Server${i} have special character in file name" >> "$PATH_LOCAL/log"
 			echo "$CHECK_SPECIAL" >> "$PATH_LOCAL/log"
-			echo "Error 102: File name contain special charaters"
+			# echo "Error 102: File name contain special charaters"
 		else
 			echo "$CHECK_SPECIAL"
 		fi
