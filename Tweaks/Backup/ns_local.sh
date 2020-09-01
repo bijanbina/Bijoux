@@ -94,6 +94,7 @@ if [ "$DIFF_MODE" -eq "0" ]; then # if disable diff mode
 	for i in $(seq 1 $SERVER_COUNT)
 	do
 		echo $(date "+%D %R") "<local>: Start copy from local server${i} to host" >> "$PATH_LOCAL/log"
+		echo $(date "+%D %R") "<local>: Start copy from local server${i} to host" >> "$PATH_LOCAL/log${i}"
 		cp -rupv "$PATH_LOCAL/server${i}/." "$PATH_LOCAL/host/" >> "$PATH_LOCAL/log${i}"
 	done
 
@@ -101,6 +102,8 @@ if [ "$DIFF_MODE" -eq "0" ]; then # if disable diff mode
 	for i in $(seq 1 $SERVER_COUNT)
 	do
 		echo $(date "+%D %R") "<local>: Start copy from local host to server${i}" >> "$PATH_LOCAL/log"
+		echo $(date "+%D %R") "<local>: Start copy from local host to server" >> "$PATH_LOCAL/log${i}"
+		#--delete-excluded: also delete excluded files from dest dirs
 		rsync -rutv --delete-excluded "$PATH_LOCAL/host/." "$PATH_LOCAL/server${i}" >> "$PATH_LOCAL/log${i}"
 	done
 

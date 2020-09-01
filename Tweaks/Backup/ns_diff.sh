@@ -24,6 +24,9 @@ ns_mount || exit 1 # Mount servers
 echo "ns_pull start"
 ns_pull || exit 1 # Pull data from servers
 
+echo "ns_live start"
+ns_live || exit 1 # Check servers are alive
+
 echo "ns_cleaner start"
 ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
 

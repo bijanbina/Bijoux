@@ -50,6 +50,8 @@ do
 
 	ns_pull || exit 1 # Pull data from servers
 
+	ns_list || exit 1 # Check servers are alive
+
 	ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
 
 	ns_check "$SERVICE_ENABLE" || exit 1 # Check file names includes special character

@@ -32,8 +32,8 @@ sudo cp ./ns_local.sh /usr/bin/ns_local
 sudo cp ./ns_push.sh /usr/bin/ns_push
 sudo cp ./ns_list.sh /usr/bin/ns_list
 sudo cp ./ns_clog.sh /usr/bin/ns_clog
+sudo cp ./ns_live.sh /usr/bin/ns_live
 sudo cp ./ns_conflict.py /usr/bin/ns_conflict.py
-sudo cp ./ns_diff_conflict.py /usr/bin/ns_diff_conflict.py
 
 sudo chmod +x /usr/bin/ns_variables.sh
 sudo chmod +x /usr/bin/ns_functions.sh
@@ -51,5 +51,5 @@ sudo chmod +x /usr/bin/ns_push
 sudo chmod +x /usr/bin/ns_local
 sudo chmod +x /usr/bin/ns_list
 sudo chmod +x /usr/bin/ns_clog
+sudo chmod +x /usr/bin/ns_live
 sudo chmod +x /usr/bin/ns_conflict.py
-sudo chmod +x /usr/bin/ns_diff_conflict.py

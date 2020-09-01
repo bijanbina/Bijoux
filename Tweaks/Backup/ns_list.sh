@@ -16,8 +16,14 @@ if [ -f "$TEMP_FOLDER/host_list" ]; then
 	rm "$TEMP_FOLDER/host_list"
 fi
 
-cd "$PATH_LOCAL/host"
-find * | tac > "$TEMP_FOLDER/host_list"
+CHECK_DIR=$(ls -A "$PATH_LOCAL/host")
+# if directory is empty
+if [ ! "$CHECK_DIR" ]; then
+	touch "$TEMP_FOLDER/host_list"
+else 
+	cd "$PATH_LOCAL/host"
+	find * | tac > "$TEMP_FOLDER/host_list"
+fi
 
 for i in $(seq 1 $SERVER_COUNT)
 do

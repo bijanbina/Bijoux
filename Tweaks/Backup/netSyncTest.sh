@@ -7,7 +7,7 @@
 # This script should be run by activating netSync services 
 # from systemctl.
 
-export DIFF_MODE="1"
+export DIFF_MODE="0"
 SERVICE_ENABLE="0"
 
 
@@ -42,6 +42,7 @@ while true; do
 	echo "7 - ns_push: Push backup data from local to servers"
 	echo "8 - ns_umount: Unmount servers"
 	echo "9 - ns_clog: Clear logs"
+	echo "l - ns_live: Check servers is alive"
 	echo "0 - Exit"
 	echo
 
@@ -51,6 +52,11 @@ while true; do
 
 	if [ -z "$response_main" ]; then
 		exit
+	fi
+
+	if [[ "$response_main" == *"l"* ]]; then
+		ns_live || exit 1
+		echo "ns_live = $?"
 	fi
 
 	if [[ "$response_main" == *"1"* ]]; then

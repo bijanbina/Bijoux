@@ -38,7 +38,7 @@ do
 	# fi
 
 	# Check special character in file name
-	CHECK_SPECIAL=$( find . | grep '[^a-zA-Z0-9+/._-]' )
+	CHECK_SPECIAL=$( find . | grep '[^a-zA-Z0-9\[\]+/._-]' )
 	if [ ! -z "$CHECK_SPECIAL" ]; then
 		if [ "$SERVICE" -eq "1" ]; then
 			echo $(date "+%D %R") "<check>: Server${i} have special character in file name" >> "$PATH_LOCAL/log"
