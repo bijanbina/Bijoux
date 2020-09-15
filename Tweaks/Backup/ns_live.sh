@@ -7,7 +7,7 @@
 # to define required envirovmental variables.
 # Usage: ns_live.sh
 
-if [ -z ${PATH_LOCAL+x} ]; then 
+if [ -z ${LOCAL_STORAGE+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
 fi

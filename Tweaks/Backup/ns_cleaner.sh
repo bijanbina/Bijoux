@@ -20,7 +20,7 @@ source ns_functions.sh
 
 CURR_DIR=$(pwd)
 
-if [ -z ${PATH_LOCAL+x} ]; then 
+if [ -z ${LOCAL_STORAGE+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
 fi
@@ -33,7 +33,7 @@ for i in $(seq 1 $SERVER_COUNT)
 do
 
 	# Remove temp files that excel create
-	cd "$PATH_LOCAL/server${i}"
+	cd "$LOCAL_STORAGE/server${i}"
 	find . -name '*~\$*' -type f -delete
 
 	# Remove Space in file names
@@ -41,7 +41,7 @@ do
 		rm "$FILE_NAMES"
 	fi
 
-	cd "$PATH_LOCAL/server${i}"
+	cd "$LOCAL_STORAGE/server${i}"
 	find . | tac | grep ' ' > "$FILE_NAMES"
 	while read p; do
 		FILE_NAME=$(echo "$p" | awk -F "/" '{print $NF}')
@@ -51,12 +51,12 @@ do
 			FILE_NAME_NS=$(echo "$FILE_NAME" | tr ' ' '_')
 			DIR_FILE=$(dirname "$p")
 			NEW_FILE_NAME="${DIR_FILE}/${FILE_NAME_NS}"
-			ns_checkExist "$PATH_LOCAL/server${i}/$NEW_FILE_NAME"
+			ns_checkExist "$LOCAL_STORAGE/server${i}/$NEW_FILE_NAME"
 			if [ "$?" -eq 0 ]; then
-				echo $(date "+%D %R") "<cleaner>: Replace space with underscore (server${i}), $p -> $NEW_FILE_NAME" >> "$PATH_LOCAL/log"
+				echo $(date "+%D %R") "Replace space with underscore (server${i}), $p -> $NEW_FILE_NAME" >> "$LOCAL_STORAGE/log_cleaner"
 				mv "$p" "$NEW_FILE_NAME"
 			else
-				echo $(date "+%D %R") "<cleaner>: Remove (server${i}), $p" >> "$PATH_LOCAL/log"
+				echo $(date "+%D %R") "Remove $p from server${i}" >> "$LOCAL_STORAGE/log_cleaner"
 				rm -dr "$p"
 			fi
 		fi
@@ -68,19 +68,17 @@ do
 		rm "$FILE_RM_DIR"
 	fi
 
-	echo $(date "+%D %R") "<cleaner>: Delete extra files in server${i}" >> "$PATH_LOCAL/log"
-	cd "$PATH_LOCAL/server${i}"
+	echo $(date "+%D %R") "<cleaner>: Delete extra files in server${i}" >> "$LOCAL_STORAGE/log_sum"
+	cd "$LOCAL_STORAGE/server${i}"
 	find . \( -name "*.lck*" -o -name "*.jrl*" -o -name "*.err*" -o -name "*.log*" -o -name "*.dml*" -o -name "*.iml*" \) -type f -delete
 
 	find . -name "signoise.run" -type d > "$FILE_RM_DIR"
-	echo $(date "+%D %R") "<cleaner>: Delete signoise.run folder in server${i}" >> "$PATH_LOCAL/log"
 	while read p; 
 	do
 		rm -rd "$p"
 	done <"$FILE_RM_DIR"
 
 	find . -name "sigxp.run" -type d > "$FILE_RM_DIR"
-	echo $(date "+%D %R") "<cleaner>: Delete sigxp.run folder in server${i}" >> "$PATH_LOCAL/log"
 	while read p; 
 	do
 		rm -rd "$p"
@@ -91,15 +89,14 @@ do
 	fi
 
 	# Remove comma files
-	cd "$PATH_LOCAL/server${i}"
+	cd "$LOCAL_STORAGE/server${i}"
 	find . -name "*,*" > "$COMMA_FILES"
 	while read p;
 	do
-		echo $(date "+%D %R") "<cleaner>: Delete in server${i} [$p]" >> "$PATH_LOCAL/log"
-		cp -rup "$PATH_LOCAL/server${i}/$p" "$PATH_LOCAL/comma"
-		rm -dr "$PATH_LOCAL/server${i}/$p"
+		echo $(date "+%D %R") "Delete [$p] from server${i}" >> "$LOG_DIR/log_cleaner"
+		cp -rup "$LOCAL_STORAGE/server${i}/$p" "$LOCAL_STORAGE/comma"
+		rm -dr "$LOCAL_STORAGE/server${i}/$p"
 	done <"$COMMA_FILES"
-
 
 done
 

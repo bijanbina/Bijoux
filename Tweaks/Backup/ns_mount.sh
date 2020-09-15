@@ -9,7 +9,7 @@
 # sudo mount -t cifs -o "username=bijan,password=**" //192.168.1.***/Home /tmp/server2
 
 
-if [ -z ${PATH_LOCAL+x} ]; then 
+if [ -z ${LOCAL_STORAGE+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
 fi

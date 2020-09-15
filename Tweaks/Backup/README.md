@@ -8,7 +8,7 @@ Syncronize n-server files with each other, save conflicts and make logs from del
 
 Rename `setup_variables.template` to `setup_variables.sh` and set following variables:
 - SERVER_COUNT : Number of Server for syncronize
-- PATH_LOCAL : Path to backup temp folder
+- LOCAL_STORAGE : Path to local storage of host and servers folder
 - IP_SERVER[1-9] : Ip servers
 - SERVER[1-9]_USER : Username and password for servers
 - BACKUP_PERIOD : Minimal time between each backup proccess [Hour]

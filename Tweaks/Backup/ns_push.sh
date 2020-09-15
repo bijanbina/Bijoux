@@ -9,7 +9,7 @@
 
 CURR_DIR=$(pwd)
 
-if [ -z ${PATH_LOCAL+x} ]; then 
+if [ -z ${LOCAL_STORAGE+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
 fi
@@ -17,8 +17,8 @@ fi
 # Copy from local host to servers
 for i in $(seq 1 $SERVER_COUNT)
 do
-	echo $(date "+%D %R") "<push>: Start copy from local host to server${i}" >> "$PATH_LOCAL/log"
-	sudo rsync -rutv --delete-excluded "$PATH_LOCAL/host/." "/tmp/server${i}" >> "$PATH_LOCAL/log${i}"
+	echo $(date "+%D %R") "<push>: Start copy from local host to server${i}" >> "$LOCAL_STORAGE/log_sum"
+	sudo rsync -rutv --delete-excluded "$LOCAL_STORAGE/host/." "/tmp/server${i}" >> "$LOCAL_STORAGE/log${i}"
 done
 
 cd "$CURR_DIR"

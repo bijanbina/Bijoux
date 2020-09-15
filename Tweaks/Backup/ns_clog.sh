@@ -8,19 +8,14 @@
 
 CURR_DIR=$(pwd)
 
-if [ -z ${PATH_LOCAL+x} ]; then 
+if [ -z ${LOCAL_STORAGE+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
 fi
 
-cd "$PATH_LOCAL"
-> log
-for i in $(seq 1 $SERVER_COUNT)
-do
-	> "log${i}"
-done
-# > log1
-# > log2 #FIXME: for based on SERVER_COUNT
+cd "$LOCAL_STORAGE"
+> log_sum
+
 > log_conflict
 > log_delete
 > log_error

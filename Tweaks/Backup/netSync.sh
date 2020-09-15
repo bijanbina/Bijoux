@@ -13,6 +13,8 @@ SERVICE_ENABLE="1"
 source ns_variables.sh
 source ns_functions.sh
 
+ns_version # echo last modified date
+
 ns_init || exit 1
 
 while :
@@ -23,7 +25,7 @@ do
 	ns_mount # Mount servers
 	RETRUN_CODE="$?"
 	if [ "$RETRUN_CODE" -ne 0 ]; then
-		echo $(date "+%D %R") ": Failed to mount Server${RETRUN_CODE}" >> "$PATH_LOCAL/log_error"
+		echo $(date "+%D %R") ": Failed to mount Server${RETRUN_CODE}" >> "$LOCAL_STORAGE/log_error"
 
 		# Show graphical widget for failed mount servers
 		OPT=$(zenity --entry --title "Net Sync Backup" --text "Failed to mount server${RETRUN_CODE}\n1. Retry\n2. Retry after 3 hours\n3. Remind me next day")
@@ -35,7 +37,7 @@ do
 			continue
 		elif [ "$OPT" -eq "3" ]; then
 			# Write second of next day 00:00:00 to sync_time
-			date --date="next day" +"%s" > "$PATH_LOCAL/sync_time"
+			date --date="next day" +"%s" > "$LOCAL_STORAGE/sync_time"
 			continue
 		else
 			notify-send -i "/usr/share/netSync/icon.png" "Net Sync Backup" "Be polite!!!"
@@ -44,9 +46,9 @@ do
 		fi
 	fi
 
-	echo " ------------------- " >> "$PATH_LOCAL/log"
-	echo " ------------------- " >> "$PATH_LOCAL/log1"
-	echo " ------------------- " >> "$PATH_LOCAL/log2"
+	echo " ------------------- " >> "$LOCAL_STORAGE/log"
+	echo " ------------------- " >> "$LOCAL_STORAGE/log1"
+	echo " ------------------- " >> "$LOCAL_STORAGE/log2"
 
 	ns_pull || exit 1 # Pull data from servers
 
@@ -70,7 +72,7 @@ do
 		rm *
 	fi
 
-	echo $(date "+%D %R") ": Finish script" >> "$PATH_LOCAL/log"
+	echo $(date "+%D %R") ": Finish script" >> "$LOCAL_STORAGE/log"
 
 	BACKUP_PERIOD_S=$(( 60*60*BACKUP_PERIOD ))
 	ns_updateSyncTime "$BACKUP_PERIOD_S"

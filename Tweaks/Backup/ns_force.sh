@@ -9,8 +9,10 @@ export DIFF_MODE="0"
 source ns_variables.sh
 source ns_functions.sh
 
+ns_version # echo last modified date
+
 echo "ns_init start"
-ns_init || exit 1
+. ns_init || exit 1
 
 echo "ns_mount start"
 ns_mount || exit 1 # Mount servers

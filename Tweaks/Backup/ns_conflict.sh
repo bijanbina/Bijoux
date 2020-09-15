@@ -10,7 +10,7 @@
 # Save cuurent directory to be resotred upon exit
 CURR_DIR=$(pwd)
 
-if [ -z ${PATH_LOCAL+x} ]; then 
+if [ -z ${LOCAL_STORAGE+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
 fi
@@ -21,8 +21,9 @@ else
 	SERVICE_ENABLE="0"
 fi
 
+#FIXME: use ns_functions
 # Directory name for conflicts files.
-cd "$PATH_LOCAL/conflicts"
+cd "$LOCAL_STORAGE/conflicts"
 DATE=$(date "+%m%d%y")
 DIR_NAME="${DATE}_1"
 if [ -d "$DIR_NAME" ]; then
@@ -30,15 +31,15 @@ if [ -d "$DIR_NAME" ]; then
 	CNT=$(($CNT + 1))
 	DIR_NAME="${DATE}_${CNT}"
 fi
-DIR_NAME="${PATH_LOCAL}/conflicts/${DIR_NAME}"
+DIR_NAME="${LOCAL_STORAGE}/conflicts/${DIR_NAME}"
 mkdir -p "$DIR_NAME"
 
 # Find files in host and servers
-cd "$PATH_LOCAL/host"
+cd "$LOCAL_STORAGE/host"
 find . -type f > "$TEMP_FOLDER/host_files"
 for i in $(seq 1 $SERVER_COUNT)
 do
-	cd "$PATH_LOCAL/server${i}"
+	cd "$LOCAL_STORAGE/server${i}"
 	find . -type f > "$TEMP_FOLDER/server${i}_files"
 done
 
@@ -53,7 +54,7 @@ done
 cd "$TEMP_FOLDER"
 sort $FILENAME | uniq > reference_file
 
-python3 /usr/bin/ns_conflict.py "$PATH_LOCAL" "$SERVER_COUNT" "$TEMP_FOLDER/reference_file" "$DIR_NAME" "$DIFF_MODE" "$SERVICE_ENABLE"
+python3 /usr/bin/ns_conflict.py "$LOCAL_STORAGE" "$SERVER_COUNT" "$TEMP_FOLDER/reference_file" "$DIR_NAME" "$DIFF_MODE" "$SERVICE_ENABLE"
 if [ "$?" -eq 1 ]; then
 	echo "Error 103: Check log_error for details"
 	exit 1

@@ -7,9 +7,8 @@
 #		2. Number Of Server
 #		3. Reference file for read all files in servers and host
 #		4. Directory name for copy conflict files
-#		5. Log file name
-#		6. Difference mode(enable[1], disable[0])
-#		7. Run script as service(enable[1], disable[0])
+#		5. Difference mode(enable[1], disable[0])
+#		6. Run script as service(enable[1], disable[0])
 # example: python3 ns_conflict.py <path-local> <server-count> <reference-list> <dir-name-conflict> <diff-mode> <service-enable>
 
 
@@ -26,22 +25,22 @@ if __name__ == '__main__':
 		print('Input arguments not enough.')
 		sys.exit(1)
 
-	PATH_LOCAL = sys.argv[1]
+	LOCAL_STORAGE = sys.argv[1]
 	NUMBER_OF_SERVERS = int(sys.argv[2])
 	REFERENCE_FILE = sys.argv[3]
 	DIR_NAME_CONFLICT = sys.argv[4]
-	LOG_CONF_FILE = PATH_LOCAL + "/log_conflict"
+	LOG_CONF_FILE = LOCAL_STORAGE + "/log_conflict"
 	DIFF_MODE = int(sys.argv[5])
 	SERVICE_ENABLE = int(sys.argv[6])
 
 	log_conflict = open(LOG_CONF_FILE, "a")
-	error_f = open(PATH_LOCAL + "/log_error", "a")
+	error_f = open(LOCAL_STORAGE + "/log_error", "a")
 	ref_files = open(REFERENCE_FILE, 'r') 
 	Lines = ref_files.read().splitlines()
 	curr_time = time.time() # Return the time in seconds since the epoch as a floating point number.
 	for filename in Lines:
 
-		path_file = PATH_LOCAL + "/host/" + filename
+		path_file = LOCAL_STORAGE + "/host/" + filename
 		try:
 			host_date_file = os.path.getmtime(path_file)
 			if curr_time < host_date_file: # file modification time is in the future.
@@ -57,7 +56,7 @@ if __name__ == '__main__':
 
 		date_files = []
 		for i in range(NUMBER_OF_SERVERS):
-			path_file = PATH_LOCAL + "/server" + str(i+1) + "/" + filename
+			path_file = LOCAL_STORAGE + "/server" + str(i+1) + "/" + filename
 			try:
 				df = os.path.getmtime(path_file) # date_file
 				if curr_time < df: # file modification time is in the future. 
@@ -100,7 +99,7 @@ if __name__ == '__main__':
 						break
 					else: # in case of conflict copy files to the conflict folder
 						if DIFF_MODE == 0:
-							src = PATH_LOCAL + "/server" + str(server_id+1) + "/" + filename
+							src = LOCAL_STORAGE + "/server" + str(server_id+1) + "/" + filename
 							des = DIR_NAME_CONFLICT + "/server" + str(server_id+1) + "/" + file_dir
 							command_str = "mkdir -p " + des
 							os.system(command_str)

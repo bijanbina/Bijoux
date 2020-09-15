@@ -8,9 +8,12 @@
 # Usage: ns_local.sh <service-run>
 # Variable <service-run> set to 1 if call this script in service mode (default value is 0).
 
+source ./ns_functions.sh
+
 CURR_DIR=$(pwd)
 
-if [ -z ${PATH_LOCAL+x} ]; then 
+
+if [ -z ${LOCAL_STORAGE+x} ]; then 
 	echo "Please run net sync first to define envirovment variables."
 	exit 1
 fi
@@ -21,71 +24,69 @@ else
 	SERVICE_ENABLE="0"
 fi
 
-ns_list || exit 1 # Fill host_list, servers_list files
+ns_createList # create host_list and servers_list
 
-# Directory name for deleted files.
-cd "$PATH_LOCAL/delete"
-DATE=$(date "+%m%d%y")
-DIR_NAME="${DATE}_1"
-if [ -d "$DIR_NAME" ]; then
-	CNT=$(ls | grep "${DATE}_" | awk -F '_' '{print $NF}' | sort -nr | head -n1)
-	CNT=$(($CNT + 1))
-	DIR_NAME="${DATE}_${CNT}"
+# Get directory name based on date for deleted files.
+DELETE_DIR="$(ns_dirName "${LOCAL_STORAGE}/delete")"
+mkdir -p "$DELETE_DIR"
+
+# create list of deleted files
+if [ -f "$TEMP_FOLDER/diff_list" ]; then
+	rm "$TEMP_FOLDER/diff_list"
 fi
-DIR_NAME="${PATH_LOCAL}/delete/${DIR_NAME}"
-mkdir -p "$DIR_NAME"
+
+for i in $(seq 1 $SERVER_COUNT)
+do
+	diff "$TEMP_FOLDER/server${i}_list" "$TEMP_FOLDER/host_list" | grep '^>' | sed 's/^>\ //' >> "$TEMP_FOLDER/diff_list"
+done
+
+sort "$TEMP_FOLDER/diff_list" | uniq > "$TEMP_FOLDER/diff_list_uniq"
+
 
 # Sync local servers and host for deleted files
-echo $(date "+%D %R") "<local>: Sync local servers and host" >> "$PATH_LOCAL/log"
+echo "$(date "+%D %R") <local>: Sync local servers and host" >> "$LOCAL_STORAGE/log_sum"
 while read p
 do
 
-	for i in $(seq 1 $SERVER_COUNT)
+	DELETED_PATH_FILE=$(dirname "$p")
+	if [ "$DIFF_MODE" -eq "0" ];then 
+
+		if [ -e "$LOCAL_STORAGE/host/$p" ]; then
+			mkdir -p "${DELETE_DIR}/host/$DELETED_PATH_FILE"
+			cp -rup "$LOCAL_STORAGE/host/$p" "${DELETE_DIR}/host/$DELETED_PATH_FILE"
+			rm -dr "$LOCAL_STORAGE/host/$p"
+		fi
+
+	fi
+
+	for j in $(seq 1 $SERVER_COUNT)
 	do
-		cd "$TEMP_FOLDER"
-		CHECK_FILE=$(grep -w "$p" server${i}_list)
 
-		if [ -z "$CHECK_FILE" ]; then
-
-			if [ "$SERVICE_ENABLE" -ne "1" ];then 
-				echo "delete: server${i} ---> $p"
-			fi
-
+		if [ -e "$LOCAL_STORAGE/server${j}/$p" ]; then
 			if [ "$DIFF_MODE" -eq "0" ];then 
-
-				echo $(date "+%D %R") ":(server${i}) $p " >> "$PATH_LOCAL/log_delete"
-				# printf "delete: server${i} ---> $p                                                 \r"
-
-				DELETED_PATH_FILE=$(dirname "$p")
-				mkdir -p "${DIR_NAME}/host/$DELETED_PATH_FILE"
-				cp -rup "$PATH_LOCAL/host/$p" "${DIR_NAME}/host/$DELETED_PATH_FILE"
-				rm -dr "$PATH_LOCAL/host/$p"
-
-				for j in $(seq 1 $SERVER_COUNT)
-				do
-
-					if [ "$i" -ne "$j" ]; then
-						if [ -e "$PATH_LOCAL/server${j}/$p" ]; then
-							mkdir -p "${DIR_NAME}/server${j}/$DELETED_PATH_FILE"
-							cp -rup "$PATH_LOCAL/server${j}/$p" "${DIR_NAME}/server${j}/$DELETED_PATH_FILE"
-							rm -dr "$PATH_LOCAL/server${j}/$p"
-						fi
-					fi
-
-				done
+				mkdir -p "${DELETE_DIR}/server${j}/$DELETED_PATH_FILE"
+				cp -rup "$LOCAL_STORAGE/server${j}/$p" "${DELETE_DIR}/server${j}/$DELETED_PATH_FILE"
+				rm -dr "$LOCAL_STORAGE/server${j}/$p"
 			fi
-
-			break
+		else
+			if [ "$SERVICE_ENABLE" -ne "1" ];then 
+				echo "delete: server${j} ---> $p"
+				# uncomment to show delete files in single line
+				# printf "delete: server${j} ---> $p                                                 \r"
+			else
+				echo "$(date "+%D %R"): delete $p detected from server${j}" >> "$LOG_DIR/log_delete"
+			fi
 		fi
 
 	done
 
-done <"$TEMP_FOLDER/host_list"
+done <"$TEMP_FOLDER/diff_list_uniq"	
+
 
 # Remove delete direcotry if empty
-CHECK_DIR=$(ls -A "$DIR_NAME")
+CHECK_DIR=$(ls -A "$DELETE_DIR")
 if [ ! "$CHECK_DIR" ]; then
-	rmdir "$DIR_NAME"
+	rmdir "$DELETE_DIR"
 fi
 
 if [ "$DIFF_MODE" -eq "0" ]; then # if disable diff mode
@@ -93,18 +94,17 @@ if [ "$DIFF_MODE" -eq "0" ]; then # if disable diff mode
 	# Update host
 	for i in $(seq 1 $SERVER_COUNT)
 	do
-		echo $(date "+%D %R") "<local>: Start copy from local server${i} to host" >> "$PATH_LOCAL/log"
-		echo $(date "+%D %R") "<local>: Start copy from local server${i} to host" >> "$PATH_LOCAL/log${i}"
-		cp -rupv "$PATH_LOCAL/server${i}/." "$PATH_LOCAL/host/" >> "$PATH_LOCAL/log${i}"
+		echo "$(date "+%D %R") <local>: Start copy from local server${i} to host" >> "$LOCAL_STORAGE/log_sum"
+		echo "$(date "+%D %R") <local>: Start copy from local server${i} to host" >> "$LOCAL_STORAGE/log${i}"
+		cp -rupv "$LOCAL_STORAGE/server${i}/." "$LOCAL_STORAGE/host/" >> "$LOCAL_STORAGE/log${i}"
 	done
 
 	# Copy from local host to local servers
 	for i in $(seq 1 $SERVER_COUNT)
 	do
-		echo $(date "+%D %R") "<local>: Start copy from local host to server${i}" >> "$PATH_LOCAL/log"
-		echo $(date "+%D %R") "<local>: Start copy from local host to server" >> "$PATH_LOCAL/log${i}"
-		#--delete-excluded: also delete excluded files from dest dirs
-		rsync -rutv --delete-excluded "$PATH_LOCAL/host/." "$PATH_LOCAL/server${i}" >> "$PATH_LOCAL/log${i}"
+		echo "$(date "+%D %R") <local>: Start copy from local host to server${i}" >> "$LOCAL_STORAGE/log_sum"
+		echo "$(date "+%D %R") <local>: Start copy from local host to server" >> "$LOCAL_STORAGE/log${i}"
+		rsync -rutv --delete "$LOCAL_STORAGE/host/." "$LOCAL_STORAGE/server${i}" >> "$LOCAL_STORAGE/log${i}"
 	done
 
 fi

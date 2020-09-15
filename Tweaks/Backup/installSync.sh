@@ -1,7 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+
+# List of files that should be excluded from install
+INSTALL_EXCLUDE=("installSync.sh" "netSyncTest.sh" "ns_clone.sh")
+# Files that .sh extension shouldn't be removed
+# Warning: These files shouldn't contain source command
+SH_EXCLUDE=("ns_variables.sh" "ns_functions.sh") 
 
 #sudo mkdir -m 777 /usr/share/netsync/
-sudo cp ./netSync.service /usr/lib/systemd/system/
+# sudo cp ./netSync.service /usr/lib/systemd/system/
 
 # printf "Enable Net Sync services?[y/N]: "
 # read response
@@ -14,42 +20,41 @@ if [ ! -d "/usr/share/netSync" ]; then
 	sudo mkdir -p "/usr/share/netSync"
 fi
 
+if [ -f "/usr/share/netSync/file_list" ]; then
+	sudo rm "/usr/share/netSync/file_list"
+fi
+
+sudo touch "/usr/share/netSync/file_list"
+sudo chmod 777 "/usr/share/netSync/file_list"
+
+# Icon for net sync notification
 sudo cp ./icon.png /usr/share/netSync/icon.png
 
-sudo cp ./ns_variables.sh /usr/bin/ns_variables.sh
-sudo cp ./ns_functions.sh /usr/bin/ns_functions.sh 
-sudo cp ./netSync.sh /usr/bin/netSync
-sudo cp ./ns_force.sh /usr/bin/ns_force
-sudo cp ./ns_diff.sh /usr/bin/ns_diff
-sudo cp ./ns_init.sh /usr/bin/ns_init
-sudo cp ./ns_conflict.sh /usr/bin/ns_conflict
-sudo cp ./ns_cleaner.sh /usr/bin/ns_cleaner
-sudo cp ./ns_check.sh /usr/bin/ns_check
-sudo cp ./ns_mount.sh /usr/bin/ns_mount
-sudo cp ./ns_umount.sh /usr/bin/ns_umount
-sudo cp ./ns_pull.sh /usr/bin/ns_pull
-sudo cp ./ns_local.sh /usr/bin/ns_local
-sudo cp ./ns_push.sh /usr/bin/ns_push
-sudo cp ./ns_list.sh /usr/bin/ns_list
-sudo cp ./ns_clog.sh /usr/bin/ns_clog
-sudo cp ./ns_live.sh /usr/bin/ns_live
-sudo cp ./ns_conflict.py /usr/bin/ns_conflict.py
+for file in *; do
 
-sudo chmod +x /usr/bin/ns_variables.sh
-sudo chmod +x /usr/bin/ns_functions.sh
-sudo chmod +x /usr/bin/netSync
-sudo chmod +x /usr/bin/ns_force
-sudo chmod +x /usr/bin/ns_diff
-sudo chmod +x /usr/bin/ns_init
-sudo chmod +x /usr/bin/ns_conflict
-sudo chmod +x /usr/bin/ns_cleaner
-sudo chmod +x /usr/bin/ns_check
-sudo chmod +x /usr/bin/ns_mount
-sudo chmod +x /usr/bin/ns_umount
-sudo chmod +x /usr/bin/ns_pull
-sudo chmod +x /usr/bin/ns_push
-sudo chmod +x /usr/bin/ns_local
-sudo chmod +x /usr/bin/ns_list
-sudo chmod +x /usr/bin/ns_clog
-sudo chmod +x /usr/bin/ns_live
-sudo chmod +x /usr/bin/ns_conflict.py
+    # if file is not inside in INSTALL_EXCLUDE
+	if [[ ! " ${INSTALL_EXCLUDE[@]} " =~ " ${file} " ]]; then
+		EXTENSION="${file#*.}"
+		if [ "$EXTENSION" == "sh" ]; then
+			# if file should not have .sh extension
+			if [[ ! " ${SH_EXCLUDE[@]} " =~ " ${file} " ]]; then
+				sudo cp "$file" "/usr/bin/${file%.*}"
+				sudo sed -i 's/\.\/ns_functions.sh/\/usr\/bin\/ns_functions.sh/' "/usr/bin/${file%.*}"
+				sudo chmod +x "/usr/bin/${file%.*}"
+				echo "/usr/bin/${file%.*}" >> "/usr/share/netSync/file_list"
+			else
+				sudo cp "$file" "/usr/bin/"
+				sudo chmod +x "/usr/bin/$file"
+				echo "/usr/bin/$file" >> "/usr/share/netSync/file_list"
+			fi
+		elif [ "$EXTENSION" == "py" ]; then
+			sudo cp "$file" "/usr/bin/"
+			sudo chmod +x "/usr/bin/$file"
+			echo "/usr/bin/$file" >> "/usr/share/netSync/file_list"
+		fi
+	fi
+
+done
+
+source ns_functions.sh
+ns_version
