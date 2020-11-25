@@ -57,6 +57,8 @@ do
 	ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
 
 	ns_check "$SERVICE_ENABLE" || exit 1 # Check file names includes special character
+
+	ns_versionControl "$SERVICE_ENABLE" || exit 1 # Backup from version control files in LOCAL_STORAGE/vc_list
 	
 	ns_conflict "$SERVICE_ENABLE" || exit 1
 

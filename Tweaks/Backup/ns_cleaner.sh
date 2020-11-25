@@ -44,21 +44,29 @@ do
 	cd "$LOCAL_STORAGE/server${i}"
 	find . | tac | grep ' ' > "$FILE_NAMES"
 	while read p; do
+
 		FILE_NAME=$(echo "$p" | awk -F "/" '{print $NF}')
 		CHECK=$(echo "$FILE_NAME" | grep ' ')
 
 		if [ ! -z "$CHECK" ]; then
+
 			FILE_NAME_NS=$(echo "$FILE_NAME" | tr ' ' '_')
 			DIR_FILE=$(dirname "$p")
 			NEW_FILE_NAME="${DIR_FILE}/${FILE_NAME_NS}"
 			ns_checkExist "$LOCAL_STORAGE/server${i}/$NEW_FILE_NAME"
+
 			if [ "$?" -eq 0 ]; then
+
 				echo $(date "+%D %R") "Replace space with underscore (server${i}), $p -> $NEW_FILE_NAME" >> "$LOCAL_STORAGE/log_cleaner"
 				mv "$p" "$NEW_FILE_NAME"
+
 			else
+
 				echo $(date "+%D %R") "Remove $p from server${i}" >> "$LOCAL_STORAGE/log_cleaner"
 				rm -dr "$p"
+
 			fi
+
 		fi
 
 	done <"$FILE_NAMES"
@@ -70,7 +78,7 @@ do
 
 	echo $(date "+%D %R") "<cleaner>: Delete extra files in server${i}" >> "$LOCAL_STORAGE/log_sum"
 	cd "$LOCAL_STORAGE/server${i}"
-	find . \( -name "*.lck*" -o -name "*.jrl*" -o -name "*.err*" -o -name "*.log*" -o -name "*.dml*" -o -name "*.iml*" \) -type f -delete
+	find . \( -name "*.lck*" -o -name "*.jrl*" -o -name "*.err*" -o -name "*.log*" -o -name "*.dml*" -o -name "*.iml*" -o -name "*.OBK*" -o -name "*.DBK*" -o -name "*.OLBlck*" \) -type f -delete
 
 	find . -name "signoise.run" -type d > "$FILE_RM_DIR"
 	while read p; 

@@ -69,12 +69,17 @@ do
 				rm -dr "$LOCAL_STORAGE/server${j}/$p"
 			fi
 		else
-			if [ "$SERVICE_ENABLE" -ne "1" ];then 
-				echo "delete: server${j} ---> $p"
-				# uncomment to show delete files in single line
-				# printf "delete: server${j} ---> $p                                                 \r"
-			else
-				echo "$(date "+%D %R"): delete $p detected from server${j}" >> "$LOG_DIR/log_delete"
+			CLEANER_FILES=$(echo "$p" | grep -E ".lck|.jrl|.err|.log|.dml|.iml|.OBK|.DBK|.OLBlck")
+			if [ -z "$CLEANER_FILES" ]; then
+
+				if [ "$SERVICE_ENABLE" -ne "1" ];then
+					echo "delete: server${j} ---> $p"
+					# uncomment to show delete files in single line
+					# printf "delete: server${j} ---> $p                                                 \r"
+				else
+					echo "$(date "+%D %R"): delete $p detected from server${j}" >> "$LOG_DIR/log_delete"
+				fi
+
 			fi
 		fi
 

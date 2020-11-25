@@ -14,7 +14,7 @@ CURR_DIR=$(pwd)
 
 source ./ns_variables.sh
 source ./ns_functions.sh
-export LOCAL_STORAGE=/mnt/hdd2/BackupTest
+export LOCAL_STORAGE=/mnt/hdd2/SyncLocalTest
 export TEMP_FOLDER="$LOCAL_STORAGE/.temp"
 
 # ./ns_init.sh || exit 1
@@ -37,6 +37,7 @@ while true; do
 	echo "2 - ns_pull: Pull data from servers"
 	echo "3 - ns_cleaner: Remove space and delete spurious files"
 	echo "4 - ns_check: Check space and special character"
+	echo "v - ns_versionControl: Backup for version control files"
 	echo "5 - ns_conflict: Resolve conflict between servers"
 	echo "6 - ns_local: Sync local servers and host for deleted files"
 	echo "7 - ns_umount: Unmount servers"
@@ -76,6 +77,11 @@ while true; do
 	if [[ "$response_main" == *"4"* ]]; then
 		./ns_check.sh "$SERVICE_ENABLE" || exit 1
 		echo "ns_check = $?"
+	fi
+
+	if [[ "$response_main" == *"v"* ]]; then
+		./ns_versionControl.sh "$SERVICE_ENABLE" || exit 1
+		echo "ns_versionControl = $?"
 	fi
 
 	if [[ "$response_main" == *"5"* ]]; then

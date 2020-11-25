@@ -20,6 +20,7 @@ mkdir -p "$LOCAL_STORAGE/host"
 mkdir -p "$LOCAL_STORAGE/conflicts"
 mkdir -p "$LOCAL_STORAGE/delete"
 mkdir -p "$LOCAL_STORAGE/comma"
+mkdir -p "$LOCAL_STORAGE/backup"
 mkdir -p "$TEMP_FOLDER"
 mkdir -p "$LOCAL_STORAGE/log"
 

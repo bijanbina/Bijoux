@@ -29,6 +29,9 @@ ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
 echo "ns_check start"
 ns_check || exit 1 # Check file names includes spaces or special character
 
+echo "ns_versionControl start"
+ns_versionControl || exit 1 # Backup from version control files in LOCAL_STORAGE/vc_list
+
 echo "ns_conflict start"
 ns_conflict || exit 1
 
