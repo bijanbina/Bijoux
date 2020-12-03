@@ -52,7 +52,7 @@ do
 
 	ns_pull || exit 1 # Pull data from servers
 
-	ns_list || exit 1 # Check servers are alive
+	ns_live || exit 1 # Check servers are alive
 
 	ns_cleaner || exit 1 # Clean servers (Remove space, Delete spurious files)
 
@@ -63,7 +63,11 @@ do
 	ns_conflict "$SERVICE_ENABLE" || exit 1
 
 	ns_local "$SERVICE_ENABLE" || exit 1 # Sync local servers and host for deleted files
-	
+
+	ns_footprints "$SERVICE_ENABLE" || exit 1 # Copy footprint and pad to template folder
+
+	ns_live || exit 1 # Check servers are alive
+
 	ns_push || exit 1 # Push backup data from local to servers
 
 	ns_umount || exit 1 # Unmount servers

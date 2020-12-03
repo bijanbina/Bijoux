@@ -38,6 +38,9 @@ ns_conflict || exit 1
 echo "ns_local start"
 ns_local || exit 1 # Sync local servers and host for deleted files
 
+echo "ns_footprint start"
+ns_footprints || exit 1 # Copy footprint and pad to template folder
+
 echo "ns_live start"
 ns_live || exit 1 # Check servers are alive
 

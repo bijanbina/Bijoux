@@ -40,8 +40,11 @@ while true; do
 	echo "v - ns_versionControl: Backup for version control files"
 	echo "5 - ns_conflict: Resolve conflict between servers"
 	echo "6 - ns_local: Sync local servers and host for deleted files"
+	echo "f - ns_footprints: Copy footprint and pad to template folder"
+	echo "p - ns_pushLocal: Push backup data from local host to local servers"
 	echo "7 - ns_umount: Unmount servers"
 	echo "8 - ns_clog: Clear logs"
+	echo "9 - ns_list: Make file list in host and servers"
 	echo "l - ns_live: Check servers is alive"
 	echo "0 - Exit"
 	echo
@@ -94,6 +97,16 @@ while true; do
 		echo "ns_local = $?"
 	fi
 
+	if [[ "$response_main" == *"f"* ]]; then
+		./ns_footprints.sh "$SERVICE_ENABLE" || exit 1
+		echo "ns_footprints = $?"
+	fi
+
+	if [[ "$response_main" == *"p"* ]]; then
+		./ns_pushLocal.sh || exit 1
+		echo "ns_pushLocal = $?"
+	fi
+
 	if [[ "$response_main" == *"7"* ]]; then
 		./ns_umount.sh || exit 1
 		echo "ns_umount = $?"
@@ -108,7 +121,6 @@ while true; do
 		./ns_list.sh || exit 1
 		echo "ns_list = $?"
 	fi
-
 
 	if [[ "$response_main" == *"0"* ]]; then
 		break

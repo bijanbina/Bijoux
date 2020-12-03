@@ -14,6 +14,7 @@ fi
 
 for i in $(seq 1 $SERVER_COUNT)
 do
+	echo "pull from server${i} start"
 	rsync -rutv --delete "/tmp/server${i}" "$LOCAL_STORAGE" >> "$LOG_DIR/log${i}"
 	echo $(date "+%D %R") "<pull>: rsync server${i} completed" >> "$LOCAL_STORAGE/log_sum"
 done

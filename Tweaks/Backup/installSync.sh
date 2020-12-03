@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of files that should be excluded from install
-INSTALL_EXCLUDE=("installSync.sh" "netSyncTest.sh" "ns_clone.sh")
+INSTALL_EXCLUDE=("installSync.sh" "netSyncTest.sh" "ns_clone.sh" "ns_pushLocal.sh")
 # Files that .sh extension shouldn't be removed
 # Warning: These files shouldn't contain source command
 SH_EXCLUDE=("ns_variables.sh" "ns_functions.sh") 
