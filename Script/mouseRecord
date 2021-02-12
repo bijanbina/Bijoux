@@ -1,0 +1,21 @@
+#! /bin/sh
+
+START_TIME_MS=$(($(date +%s%N)/1000000))
+START_TIME_S=$(($(date +%s)))
+
+while [ true ] ; do
+	MOUSE_STATE=$(xinput --query-state 11 | grep "button\[1\]" | awk -F= '{print $2}')
+	if [ "$MOUSE_STATE" = "down" ] ; then
+		CURR_TIME=$(($(date +%s%N)/1000000-$START_TIME_MS))
+		CURR_TIME_S=$(($(date +%s)-$START_TIME_S))
+		CURR_TIME_T=$(($(date +%s%N)/1000000/1000))
+		CURR_TIME_MS=$(($(date +%s%N)/1000000-$CURR_TIME_T*1000))
+		CURR_TIME_F=$(($CURR_TIME_MS*30/1000))
+		MOUSE_LOC=$(xdotool getmouselocation | awk '{print $1 " "  $2}')
+		echo "$CURR_TIME_S:$CURR_TIME_F $MOUSE_LOC"
+
+	fi
+	sleep 0.02
+done
+
+
