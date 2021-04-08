@@ -39,6 +39,7 @@ while true; do
 	echo "v - ns_versionControl: Backup for version control files"
 	echo "5 - ns_conflict: Resolve conflict between servers"
 	echo "6 - ns_local: Sync local servers and host for deleted files"
+	echo "f - ns_footprints: Copy footprint and pad to template folder"
 	echo "7 - ns_push: Push backup data from local to servers"
 	echo "8 - ns_umount: Unmount servers"
 	echo "9 - ns_clog: Clear logs"
@@ -92,6 +93,11 @@ while true; do
 	if [[ "$response_main" == *"6"* ]]; then
 		ns_local "$SERVICE_ENABLE" || exit 1
 		echo "ns_local = $?"
+	fi
+
+	if [[ "$response_main" == *"f"* ]]; then
+		ns_footprints || exit 1
+		echo "ns_footprints = $?"
 	fi
 
 	if [[ "$response_main" == *"7"* ]]; then

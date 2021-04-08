@@ -18,6 +18,7 @@ export LOCAL_STORAGE=/mnt/hdd2/SyncLocalTest
 export TEMP_FOLDER="$LOCAL_STORAGE/.temp"
 
 # ./ns_init.sh || exit 1
+# FIXME: check '.'
 . ./ns_init.sh || exit 1
 
 # echo server count and ip

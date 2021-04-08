@@ -17,6 +17,7 @@ fi
 # Copy from local host to servers
 for i in $(seq 1 $SERVER_COUNT)
 do
+	echo "start server${i}"
 	echo $(date "+%D %R") "<push>: Start copy from local host to server${i}" >> "$LOCAL_STORAGE/log_sum"
 	sudo rsync -rutv --delete-excluded "$LOCAL_STORAGE/host/." "/tmp/server${i}" >> "$LOCAL_STORAGE/log${i}"
 done

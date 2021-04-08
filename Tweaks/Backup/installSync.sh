@@ -40,6 +40,8 @@ for file in *; do
 			if [[ ! " ${SH_EXCLUDE[@]} " =~ " ${file} " ]]; then
 				sudo cp "$file" "/usr/bin/${file%.*}"
 				sudo sed -i 's/\.\/ns_functions.sh/\/usr\/bin\/ns_functions.sh/' "/usr/bin/${file%.*}"
+				sudo sed -i 's/python3 \.\/ns_footprints.py/python3 \/usr\/bin\/ns_footprints.py/' "/usr/bin/${file%.*}"
+				sudo sed -i 's/python3 \.\/ns_conflict.py/python3 \/usr\/bin\/ns_conflict.py/' "/usr/bin/${file%.*}"
 				sudo chmod +x "/usr/bin/${file%.*}"
 				echo "/usr/bin/${file%.*}" >> "/usr/share/netSync/file_list"
 			else
