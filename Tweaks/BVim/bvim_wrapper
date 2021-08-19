@@ -1,0 +1,32 @@
+#! /bin/sh
+KEYBOARD_DEVID=$(xinput --list | grep Rapoo | grep keyboard | awk -F " " '{print $7}' | awk -F "=" '{print $2}')
+servername=($(gvim --serverlist))
+cr_dir=($(echo "$1" | sed -E 's/(.*)\/(.*)/\1\//'))
+cd $cr_dir #change pwd to file directory
+
+if [ -z "$servername" ];then
+    gvim --servername GVIM_BIJ "$1"      
+else
+    #if an instance of GVIM is running check if it's in current
+    #the current workspace or not. If it's not open a new instance
+    #if it's there, raise it and add a tab
+    WORKSPACE_NUM=$(wmctrl -d | grep "*" | awk -F ' ' '{printf $1}')
+    GVIM_WINTITLE_BIJ=$(wmctrl -l | grep "$WORKSPACE_NUM Bijan-PC" | grep "GVIM_BIJ")
+    GVIM_WINTITLE_BIJ=$(wmctrl -l | grep "$WORKSPACE_NUM Bijan-PC" | grep "$servername")
+    if [ -z "$GVIM_WINTITLE_BIJ" ] || [ -z "$GVIM_WINTITLE_CIJ" ];then
+        gvim --servername GVIM_CIJ "$1"
+    else
+        #CTRL Cannot be used because of toggling feature on nautilus
+        #Alt have some myterios background 
+        #Space is a potential option.
+			SHIFT_STATE=($(xinput query-state $KEYBOARD_DEVID | grep '\[50\]' | awk -F '=' '{print $2}'))
+        if [ "$SHIFT_STATE" = "down" ]; then
+            gvim --servername GVIM_CIJ "$1"
+        else
+            gvim --servername $servername --remote-tab +startinsert "$1"
+            #gvim --remote-send ":sil call foreground()<CR>"
+            wmctrl -a $servername #Activate GVIM page
+        fi
+    fi 
+fi
+

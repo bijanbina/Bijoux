@@ -29,7 +29,7 @@ bvim -p mainwindow.cpp mainwindow.h main.cpp .
 
 [List of keys available in VIM](https://askubuntu.com/questions/567499/which-are-the-vim-key-notations)
 
-###Leader
+### Leader
 One of the best unused feature in BVim is leader. leader is a vim feature that allow to create two char shortcut.
 So if you press two button fast (like dd) that will trig the map key. see [Leaders / Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/chapters/06.html) for full description
 
@@ -61,7 +61,7 @@ CTRL+Y scroll screen one line up and CTRL+E scroll one line down. Till now no co
 #### NerdTree installation
 Nerdtree has been installed through [pathogen.vim](https://github.com/tpope/vim-pathogen). pathogen is a plugin manager that load all plugin that exist in `~/.vim/bundle/` So all it takes to install a plugin is to copy it `~/.vim/bundle/`
 
-##Scripts
+## Scripts
 `:set <option>` : set and unset if have no argument will act as a boolean true and false operation. 
 
 `:set <option>!` : this will toggle *option*. Thus true change to false and vice versa.

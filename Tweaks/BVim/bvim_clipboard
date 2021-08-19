@@ -1,0 +1,3 @@
+#!/bin/sh
+file_path=$(xsel -o | sed "s/[\"'<>]//g" )
+/home/bijan/Project/Bijoux/Tweaks/BVim/bvim_wrapper "$file_path"
