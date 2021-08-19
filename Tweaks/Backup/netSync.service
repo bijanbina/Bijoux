@@ -1,0 +1,12 @@
+[Unit]
+Description=Backup system home every 30 minute
+After=suspend.target
+#After=hibernate.target
+#After=hybrid-sleep.target
+
+[Service]
+ExecStart=/usr/bin/netSync
+KillMode=process
+
+[Install]
+WantedBy=suspend.target

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SEARCH_RESULT=$(xrandr | grep Screen | grep 3840)
+
+if [ -z "$SEARCH_RESULT" ]; then
+	echo "window is mirrored, now extending ... !"
+	xrandr --output HDMI-1 --mode 1920x1080 --scale 1x1 --output VGA-1 --mode 1920x1080 --scale 1x1 --right-of HDMI-1
+else
+	echo "window is extended, now mirroring ... !"
+	xrandr --output HDMI-1 --mode 1680x1050 --scale 1x1 --output VGA-1 --same-as HDMI-1 --mode 1680x1050 --scale 1x1
+	sleep 2
+	xrandr --output HDMI-1 --mode 1920x1080 --scale 1x1 --output VGA-1 --same-as HDMI-1 --mode 1920x1080 --scale 1x1
+fi
