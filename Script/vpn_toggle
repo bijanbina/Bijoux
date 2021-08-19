@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#find status of Scroll Lock key LED
+lock_status=$(xset q | grep "02: Scroll Lock:" | awk -F "02: Scroll Lock:" '{print $2}' | awk -F " " '{print $1}')
+vpn_status=$(nmcli con show id MK2 | grep "GENERAL.STATE:")
+
+if [ -z "$vpn_status" ];then
+    sudo nmcli con up id MK2
+    xset -led 2 led on
+else
+    sudo nmcli con down id MK2
+    xset -led 2 led off
+fi
+
+pkill firefox.real
+sleep 2
+tor-browser-en &

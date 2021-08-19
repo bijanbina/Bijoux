@@ -1,0 +1,17 @@
+#!/bin/sh
+echo "Enter your command"
+echo "[1] Laptop/Home"
+echo "[2] Laptop/Public"
+echo "[3] Vim Sensior"
+echo -n "> "
+read ID
+if [[ $ID == "1" ]];then
+	echo bagverb | gvfs-mount "smb://BIJAN-HOME;bijan@192.168.88.88/homes"
+	nautilus "smb://BIJAN-HOME;bijan@192.168.88.88/homes/bijan"
+elif [[ $ID == "2" ]];then
+	echo bagverb | gvfs-mount "smb://BIJAN-HOME;bijan@192.168.88.88/public"
+	nautilus "smb://BIJAN-HOME;bijan@192.168.88.88/homes/bijan/Downloads"
+elif [[ $ID == "3" ]];then
+	cd /srv/http/Sensior
+	gvim -S session_file --servername GVIM_BIJ
+fi
