@@ -1,0 +1,14 @@
+* {
+}
+
+@define-color YOUR_BACKGROUND_COLOR #0f192a;
+
+window#vim-main-window {
+    background-color: @YOUR_BACKGROUND_COLOR;
+}
+
+/* @import url("resource:///org/gnome/arc-theme/gtk-main-darker.css");*/
+
+.termite {
+padding: 25px;
+}
