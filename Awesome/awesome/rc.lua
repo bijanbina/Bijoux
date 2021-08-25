@@ -180,7 +180,9 @@ end)
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewprev),
-    awful.button({ }, 5, awful.tag.viewnext)
+    awful.button({ }, 5, awful.tag.viewnext),
+    awful.button({ modkey }, 4, awful.tag.viewprev),
+    awful.button({ modkey }, 5, awful.tag.viewnext)
 ))
 -- }}}
 
@@ -292,13 +294,16 @@ globalkeys = gears.table.join(
               
     -- Screen Shot
     awful.key({ },            "Print",     function () awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end,
-              {description = "launch firefox", group = "launcher"}),
+              {description = "Take a Screenshot", group = "launcher"}),
 
     -- Nautilus
     awful.key({ modkey },            "e",     function () awful.util.spawn("nautilus") end,
               {description = "launch nautilus", group = "launcher"}),
-              
-              
+
+    -- Suspend
+    awful.key({ },            "Pause",     function () awful.spawn.with_shell("systemctl suspend") end,
+              {description = "Suspend system", group = "launcher"}),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
@@ -409,6 +414,12 @@ clientbuttons = gears.table.join(
     awful.button({ modkey }, 3, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
         awful.mouse.client.resize(c)
+    end),
+    awful.button({ modkey }, 4, function (c)
+        awful.tag.viewprev(awful.screen.focused())
+    end),
+    awful.button({ modkey }, 5, function (c)
+        awful.tag.viewnext(awful.screen.focused())
     end)
 )
 
@@ -537,7 +548,15 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 beautiful.useless_gap = 10
 
 -- Wallpaper
-gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Brooklyn_Bridge_by_seenew.jpg", s)  
+-- gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Brooklyn_Bridge_by_seenew.jpg", s)
+
+for s = 1, screen.count() do
+    if s < 2 then
+      gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Brooklyn_Bridge_by_seenew.jpg", s, true)
+    else
+      gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Brooklyn_Bridge_by_seenew.jpg", s, true)
+    end
+end
 
 -- autostart
 awful.spawn.with_shell("/usr/bin/bash ~/.config/awesome/startup.sh")
