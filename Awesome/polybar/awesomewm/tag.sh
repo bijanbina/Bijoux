@@ -2,22 +2,22 @@
 
 TAG=$(awesome-client "return screen[$1].selected_tag.name" | cut -d\" -f2)
 
-TAG_1="    "
-TAG_2="  "
-TAG_3="    "
-TAG_4="    "
-TAG_5="    "
-
 BG_COLOR="#44ffffff"
 FG_COLOR="#f3c84a"
 P_FORMAT="%{B$BG_COLOR}%{F$FG_COLOR}"
 P_CMD="~/.config/polybar/awesomewm/switch.sh"
 
+TAG_1="%{A1:$P_CMD 1:}    %{A}"
+TAG_2="%{A1:$P_CMD 2:}  %{A}"
+TAG_3="%{A1:$P_CMD 3:}    %{A}"
+TAG_4="%{A1:$P_CMD 4:}    %{A}"
+TAG_5="%{A1:$P_CMD 5:}    %{A}"
+
 #echo $TAG
 
 if [[ "$TAG" == "1" ]]; then
 
-	echo "%{A1:$P_CMD 1:} $P_FORMAT $TAG_1 %{B- F-} %{A} $TAG_2 $TAG_3 $TAG_4 $TAG_5"
+	echo "$P_FORMAT $TAG_1 %{B- F-} $TAG_2 $TAG_3 $TAG_4 $TAG_5"
 
 elif [[ "$TAG" == "2" ]]; then
 

@@ -266,15 +266,15 @@ margin-bottom = 5
 
 [module/tags1]
 type = custom/script
-exec = awesome-client 'return screen[2].selected_tag.name' | cut -d\" -f2
-interval = 0.1
+exec = ~/.config/polybar/awesomewm/tag.sh 2
+interval = 0.2
 
 [module/tags2]
 type = custom/script
-exec = awesome-client 'return screen[1].selected_tag.name' | cut -d\" -f2
-interval = 0.1
+exec = ~/.config/polybar/awesomewm/tag.sh 1
+interval = 0.2
 
 [module/batool]
 type = custom/script
-exec = cat /home/bijan/Project/Benjamin/Tools/Resources/bar_result
+exec = cat ~/Project/Benjamin/Tools/Resources/bar_result
 interval = 0.1
