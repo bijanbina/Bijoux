@@ -20,6 +20,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 require("awful.remote")
 
+require("bijoux")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -287,11 +289,17 @@ globalkeys = gears.table.join(
     -- Firefox
     awful.key({ modkey },            "d",     function () awful.util.spawn("firefox") end,
               {description = "launch firefox", group = "launcher"}),
-              
-    -- test
-    awful.key({ modkey },            "g",     function () awful.spawn.with_shell("~/.config/awesome/startup.sh") end,
-              {description = "launch golf", group = "launcher"}),
-              
+
+    -- Gedit
+    awful.key({ modkey }, "g", function ()
+     		  awful.util.spawn("gedit") end,
+              {description = "launch gedit", group = "launcher"}),
+
+    -- Qt Creator
+    awful.key({ modkey }, "Insert", function ()
+				awful.spawn.with_shell("~/.config/awesome/qt.sh") end,
+              {description = "launch Qt Creator", group = "launcher"}),
+
     -- Screen Shot
     awful.key({ },            "Print",     function () awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end,
               {description = "Take a Screenshot", group = "launcher"}),
@@ -441,6 +449,10 @@ awful.rules.rules = {
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
+    },
+    
+    { rule = { class = "Polybar" },
+      properties = { border_width = 0 }
     },
 
     -- Floating clients.
