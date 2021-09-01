@@ -297,8 +297,18 @@ globalkeys = gears.table.join(
 
     -- Qt Creator
     awful.key({ modkey }, "Insert", function ()
-				awful.spawn.with_shell("~/.config/awesome/qt.sh") end,
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh qt") end,
               {description = "launch Qt Creator", group = "launcher"}),
+
+    -- Kaldi Nato
+    awful.key({ modkey }, "Delete", function ()
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh kaldi") end,
+              {description = "launch Kaldi Development", group = "launcher"}),
+
+    -- Kaldi Nato
+    awful.key({ modkey }, "Home", function ()
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh bijoux") end,
+              {description = "launch Kaldi Development", group = "launcher"}),
 
     -- Screen Shot
     awful.key({ },            "Print",     function () awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end,

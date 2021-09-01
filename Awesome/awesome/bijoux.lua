@@ -11,3 +11,8 @@ function spawn_tag(command, tag)
 	
 	awful.util.spawn_with_shell(command)
 end
+
+-- customize naughty
+local naughty = require("naughty")
+local nconf = naughty.config
+nconf.defaults.position = "bottom_right"
