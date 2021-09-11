@@ -66,8 +66,8 @@ tray-padding = 2
 cursor-click = pointer
 cursor-scroll = default
 
-scroll-up = awesome-client 'awful = require("awful"); awful.tag.viewprev()'
 scroll-down = awesome-client 'awful = require("awful"); awful.tag.viewnext()'
+scroll-up = awesome-client 'awful = require("awful"); awful.tag.viewprev()'
 
 
 [bar/bbar1]

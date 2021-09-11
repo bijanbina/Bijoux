@@ -49,4 +49,25 @@ elif [[ "$APPLICATION" == "bijoux" ]]; then
 	sleep 2
 	awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
 
+elif [[ "$APPLICATION" == "telegram" ]]; then
+
+	TAG="4"
+	APP1="/home/bijan/Temp/Telegram/Telegram"
+
+	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
+	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
+
+	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+
+elif [[ "$APPLICATION" == "spotify" ]]; then
+
+	TAG="5"
+	APP1="spotify"
+
+	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
+	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
+
+	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+
+
 fi

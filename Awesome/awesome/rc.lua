@@ -190,7 +190,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey, "Shift"   }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
@@ -292,7 +292,7 @@ globalkeys = gears.table.join(
 
     -- Gedit
     awful.key({ modkey }, "g", function ()
-     		  awful.util.spawn("gedit") end,
+     		  awful.util.spawn("gedit --new-window") end,
               {description = "launch gedit", group = "launcher"}),
 
     -- Qt Creator
@@ -305,10 +305,20 @@ globalkeys = gears.table.join(
 				awful.spawn.with_shell("~/.config/awesome/launcher.sh kaldi") end,
               {description = "launch Kaldi Development", group = "launcher"}),
 
-    -- Kaldi Nato
+    -- Bijoux Awesome
     awful.key({ modkey }, "Home", function ()
 				awful.spawn.with_shell("~/.config/awesome/launcher.sh bijoux") end,
-              {description = "launch Kaldi Development", group = "launcher"}),
+              {description = "launch Bijoux Development", group = "launcher"}),
+
+    -- Telegram
+    awful.key({ modkey }, "t", function ()
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh telegram") end,
+              {description = "launch telegram", group = "launcher"}),
+
+    -- Spotify
+    awful.key({ modkey }, "s", function ()
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh spotify") end,
+              {description = "launch Spotify", group = "launcher"}),
 
     -- Screen Shot
     awful.key({ },            "Print",     function () awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end,
@@ -379,11 +389,12 @@ for i = 1, 5 do
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        if tag then
-                           tag:view_only()
-                        end
+						for s = 1, screen.count() do
+		                    local tag = screen[s].tags[i]
+		                    if tag then
+		                       tag:view_only()
+		                    end
+						end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
         -- Toggle tag display.
