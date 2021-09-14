@@ -58,7 +58,7 @@ font-5 = Font Awesome 5 Free:style=Solid:pixelsize=10;1
 font-6 = siji:pixelsize=10;1
 
 modules-center = date
-modules-right = eth pulseaudio xkeyboard memory cpu temperature powermenu
+modules-right = eth pulseaudio spotify xkeyboard memory cpu temperature powermenu
 
 tray-position = right
 tray-padding = 2
@@ -66,8 +66,8 @@ tray-padding = 2
 cursor-click = pointer
 cursor-scroll = default
 
-scroll-down = awesome-client 'awful = require("awful"); awful.tag.viewnext()'
-scroll-up = awesome-client 'awful = require("awful"); awful.tag.viewprev()'
+scroll-down = ~/.config/polybar/awesomewm/switch.sh next
+scroll-up = ~/.config/polybar/awesomewm/switch.sh prev
 
 
 [bar/bbar1]
@@ -278,3 +278,8 @@ interval = 0.2
 type = custom/script
 exec = cat ~/Project/Benjamin/Tools/Resources/bar_result
 interval = 0.1
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/awesomewm/spotify_bar.sh
+interval = 1.0
