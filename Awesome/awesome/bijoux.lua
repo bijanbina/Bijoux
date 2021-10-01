@@ -22,6 +22,11 @@ function tag_prev()
 	awful.tag.viewprev(screen[2])
 end
 
+function tag_history() 
+	awful.tag.history.restore(screen[1])
+	awful.tag.history.restore(screen[2])
+end
+
 -- customize naughty
 local naughty = require("naughty")
 local nconf = naughty.config
