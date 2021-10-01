@@ -181,8 +181,8 @@ end)
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewprev),
-    awful.button({ }, 5, awful.tag.viewnext),
+    awful.button({ }, 4, tag_prev),
+    awful.button({ }, 5, tag_next),
     awful.button({ modkey }, 4, awful.tag.viewprev),
     awful.button({ modkey }, 5, awful.tag.viewnext)
 ))
@@ -196,7 +196,7 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+    awful.key({ modkey,           }, "grave", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
     awful.key({ modkey,           }, "j",
@@ -292,8 +292,8 @@ globalkeys = gears.table.join(
 
     -- Gedit
     awful.key({ modkey }, "g", function ()
-     		  awful.util.spawn("gedit --new-window") end,
-              {description = "launch gedit", group = "launcher"}),
+     		  awful.util.spawn("xed") end,
+              {description = "launch xed", group = "launcher"}),
 
     -- Qt Creator
     awful.key({ modkey }, "Insert", function ()
@@ -585,9 +585,9 @@ beautiful.useless_gap = 10
 
 for s = 1, screen.count() do
     if s < 2 then
-      gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Brooklyn_Bridge_by_seenew.jpg", s, true)
+      gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Phoenix-bg-alpha.jpg", s, true)
     else
-      gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Brooklyn_Bridge_by_seenew.jpg", s, true)
+      gears.wallpaper.maximized("/home/bijan/Pictures/Wallpaper/Phoenix-bg-alpha.jpg", s, true)
     end
 end
 

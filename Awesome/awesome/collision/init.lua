@@ -155,8 +155,6 @@ local function new(k)
   glib.idle_add(glib.PRIORITY_DEFAULT_IDLE, function()
     for k,v in pairs(keys) do
       for _,key_name in ipairs(v) do
-        aw[#aw+1] = awful.key({ "Mod4",                              }, key_name, function () module.focus (k          ) end,
-                              { description = "Change focus to the "..key_name, group = "Collision" })
         aw[#aw+1] = awful.key({ "Mod4", "Mod1"                       }, key_name, function () module.resize(k          ) end,
                               { description = "Resize to the "..key_name, group = "Collision" })
         aw[#aw+1] = awful.key({ "Mod4", "Shift"                      }, key_name, function () module.move  (k          ) end,

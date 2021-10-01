@@ -12,6 +12,16 @@ function spawn_tag(command, tag)
 	awful.util.spawn_with_shell(command)
 end
 
+function tag_next() 
+	awful.tag.viewnext(screen[1])
+	awful.tag.viewnext(screen[2])
+end
+
+function tag_prev() 
+	awful.tag.viewprev(screen[1])
+	awful.tag.viewprev(screen[2])
+end
+
 -- customize naughty
 local naughty = require("naughty")
 local nconf = naughty.config
