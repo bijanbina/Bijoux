@@ -6,7 +6,14 @@ if [[ "$#" == "0" ]]; then
 	DBUS_NAME="/org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get"
 	DBUS_ARGS="string:org.mpris.MediaPlayer2.Player string:PlaybackStatus"
 
-	STATUS=$(dbus-send --print-reply --dest=$DBUS_DEST $DBUS_NAME $DBUS_ARGS)
+
+
+	STATUS=$(dbus-send --print-reply --dest=$DBUS_DEST $DBUS_NAME $DBUS_ARGS 2>/dev/null)
+
+    if [[ "$?" == "1" ]]; then
+        exit
+    fi
+    
 	STATUS=$(echo $STATUS | tail -n 1 | cut -d\" -f2)
 	if [[ "$STATUS" == "Playing" ]]; then
 	

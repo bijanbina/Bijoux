@@ -6,6 +6,11 @@ P_FORMAT="%{B$BG_COLOR}%{F$FG_COLOR}"
 P_CMD="~/.config/polybar/spotify.sh"
 STATUS=$(~/.config/polybar/spotify.sh)
 
+if [[ "$STATUS" == "" ]]; then
+    echo "$STATUS"
+    exit 0
+fi
+
 TAG_1="%{A1:$P_CMD prev:}    %{A}"
 TAG_2="%{A1:$P_CMD play:}  $STATUS  %{A}"
 TAG_3="%{A1:$P_CMD next:}    %{A}"
