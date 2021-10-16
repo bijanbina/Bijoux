@@ -2,6 +2,9 @@
 
 #sudo ~/Project/Bijoux/Script/startup_root.sh
 sudo /home/bijan/Downloads/TE/TEMP/uinput-mapper/shortcut_su
+xset s off
+xset -dpms
+xset s noblank
 
 #picom &
 #~/.config/polybar/launch.sh &

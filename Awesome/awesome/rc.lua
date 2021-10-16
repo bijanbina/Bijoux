@@ -272,7 +272,7 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "v",     function () awful.util.spawn("dmenu_run") end,
+    awful.key({ modkey },            "v",     function () awful.spawn.with_shell("~/.config/rofi/launcher.sh") end,
               {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
