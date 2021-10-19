@@ -1,0 +1,10 @@
+#!/bin/sh
+#Written By Bijan Binaee <bijan@binaee.com>
+#ARCH Tue Nov 22 23:48:15 CET 2015 x86_64 GNU/Linux
+deviceID=$(xinput list | grep "Touchpad" | awk -F "=" '{print $2}' | awk '{print $1}')
+BRIGHT="$(xinput list-props $deviceID | grep 'Synaptics Two-Finger Scrolling' | awk -F ', ' '{print $2}')"
+if [ "$BRIGHT" -eq 1  ]; then
+	xinput set-int-prop $deviceID "Synaptics Two-Finger Scrolling" 8 1 0
+else
+	xinput set-int-prop $deviceID "Synaptics Two-Finger Scrolling" 8 1 1
+fi

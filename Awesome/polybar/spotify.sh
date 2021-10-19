@@ -6,8 +6,6 @@ if [[ "$#" == "0" ]]; then
 	DBUS_NAME="/org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get"
 	DBUS_ARGS="string:org.mpris.MediaPlayer2.Player string:PlaybackStatus"
 
-
-
 	STATUS=$(dbus-send --print-reply --dest=$DBUS_DEST $DBUS_NAME $DBUS_ARGS 2>/dev/null)
 
     if [[ "$?" == "1" ]]; then
@@ -18,6 +16,7 @@ if [[ "$#" == "0" ]]; then
 	if [[ "$STATUS" == "Playing" ]]; then
 	
 		echo ""
+        ~/.config/polybar/shuttify.sh
 	
 	else
 	
