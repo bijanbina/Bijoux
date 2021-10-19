@@ -3,7 +3,7 @@
 AwesomeWM configuration files
 
 ```
-sudo pacman -S dmenu picom 
+sudo pacman -S picom papirus-icon-theme rofi
 git clone https://github.com/Elv13/collision
 yay polybar
 yay termite 
