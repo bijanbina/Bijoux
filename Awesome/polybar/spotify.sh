@@ -16,7 +16,7 @@ if [[ "$#" == "0" ]]; then
 	if [[ "$STATUS" == "Playing" ]]; then
 	
 		echo ""
-        ~/.config/polybar/shuttify.sh
+		~/.config/polybar/shuttify.sh
 	
 	else
 	

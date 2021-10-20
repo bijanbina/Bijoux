@@ -180,8 +180,11 @@ root.buttons(gears.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, tag_prev),
     awful.button({ }, 5, tag_next),
-    awful.button({ modkey }, 4, awful.tag.viewprev),
-    awful.button({ modkey }, 5, awful.tag.viewnext)
+    awful.button({ modkey }, 2, tag_next),
+    awful.button({ modkey }, 4, tag_prev),
+    awful.button({ modkey }, 5, tag_next),
+    awful.button({ modkey, "Shift" }, 4, awful.tag.viewprev),
+    awful.button({ modkey, "Shift" }, 5, awful.tag.viewnext)
 ))
 -- }}}
 
@@ -189,9 +192,9 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
+    awful.key({ modkey,           }, "Up",   tag_prev,
               {description = "view previous", group = "tag"}),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
+    awful.key({ modkey,           }, "Down",  tag_next,
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Tab", tag_history,
               {description = "go back", group = "tag"}),
@@ -310,6 +313,11 @@ globalkeys = gears.table.join(
 				awful.spawn.with_shell("~/.config/awesome/launcher.sh bijoux") end,
               {description = "launch Bijoux Development", group = "launcher"}),
 
+    -- Bijoux Meld
+    awful.key({ modkey }, "End", function ()
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh meld") end,
+              {description = "launch Meld on Awesome", group = "launcher"}),
+
     -- Telegram
     awful.key({ modkey }, "t", function ()
 				awful.spawn.with_shell("~/.config/awesome/launcher.sh telegram") end,
@@ -321,7 +329,7 @@ globalkeys = gears.table.join(
               {description = "launch Spotify", group = "launcher"}),
 
     -- Screen Shot
-    awful.key({ },            "Print",     function () awful.util.spawn("scrot -s -e 'xclip -selection clipboard -t image/png -i $f'") end,
+    awful.key({ },            "Print",     function () awful.util.spawn("scrot -d 2 -s -e 'xclip -selection clipboard -t image/png -i $f'") end,
               {description = "Take a Screenshot", group = "launcher"}),
 
     -- Nautilus
@@ -433,10 +441,13 @@ clientbuttons = gears.table.join(
         c:emit_signal("request::activate", "mouse_click", {raise = true})
         awful.mouse.client.resize(c)
     end),
-    awful.button({ modkey }, 4, function (c)
+    awful.button({ modkey }, 2, tag_next),
+    awful.button({ modkey }, 4, tag_prev),
+    awful.button({ modkey }, 5, tag_next),
+    awful.button({ modkey, "Shift" }, 4, function (c)
         awful.tag.viewprev(awful.screen.focused())
     end),
-    awful.button({ modkey }, 5, function (c)
+    awful.button({ modkey, "Shift" }, 5, function (c)
         awful.tag.viewnext(awful.screen.focused())
     end)
 )
@@ -588,4 +599,3 @@ awful.spawn.with_shell("xrandr --output HDMI-3 --output DVI-0 --left-of HDMI-3")
 awful.spawn.with_shell("/usr/lib/gsd-xsettings")
 awful.spawn.with_shell("/usr/bin/nm-applet")
 awful.spawn.with_shell("setxkbmap -layout \"us,ir\" -option \"grp:alt_shift_toggle\"")
-

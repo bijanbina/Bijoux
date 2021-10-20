@@ -17,6 +17,7 @@ if [[ "$APPLICATION" == "qt" ]]; then
 
 elif [[ "$APPLICATION" == "kaldi" ]]; then
 
+	xdotool mousemove 960 500
 	TAG="2"
 	APP1="nautilus ~/Project/Benjamin/Nato"
 	APP2="termite -d ~/Project/Benjamin/Nato"
@@ -32,6 +33,14 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 	awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
 	sleep 1
 	xdotool type "./train.sh scarlet 50"
+	sleep 0.1
+	xdotool key super+space
+	sleep 0.1
+	xdotool keydown super+shift
+	sleep 0.1
+	xdotool key --delay 120 Right Right Right Right Right Down Down
+	sleep 0.2
+	xdotool keyup super+shift
 
 elif [[ "$APPLICATION" == "bijoux" ]]; then
 
@@ -69,5 +78,18 @@ elif [[ "$APPLICATION" == "spotify" ]]; then
 
 	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
 
+elif [[ "$APPLICATION" == "meld" ]]; then
+
+	TAG="5"
+	APP1="meld ~/Project/Bijoux/Awesome/awesome/ ~/.config/awesome/"
+	APP2="meld ~/Project/Bijoux/Awesome/polybar/ ~/.config/polybar/"
+	APP3="meld ~/Project/Bijoux/Awesome/picom/ ~/.config/picom/"
+
+	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
+	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
+
+	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+	awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
+	awesome-client "spawn_tag('$APP3', screen[2].tags[$TAG])"
 
 fi

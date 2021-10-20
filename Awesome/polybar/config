@@ -17,7 +17,7 @@
 ;==========================================================
 
 [colors]
-background = #55000000
+background = #18ffffff
 background-alt = #888
 foreground = #dfdfdf
 foreground-alt = #aaa
@@ -282,4 +282,4 @@ interval = 0.1
 [module/spotify]
 type = custom/script
 exec = ~/.config/polybar/awesomewm/spotify_bar.sh
-interval = 1.0
+interval = 0.5
