@@ -34,7 +34,7 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 	sleep 1
 	xdotool type "./train.sh scarlet 50"
 	sleep 0.1
-	xdotool key super+space
+	xdotool key --delay 120 super+space
 	sleep 0.1
 	xdotool keydown super+shift
 	sleep 0.1

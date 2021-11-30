@@ -274,6 +274,11 @@ type = custom/script
 exec = ~/.config/polybar/awesomewm/tag.sh 1
 interval = 0.2
 
+[module/vpn]
+type = custom/script
+exec = ~/.config/polybar/awesomewm/vpn.sh 1
+interval = 1.0
+
 [module/batool]
 type = custom/script
 exec = cat ~/Project/Benjamin/Tools/Resources/bar_result
