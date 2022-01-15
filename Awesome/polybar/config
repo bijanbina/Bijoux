@@ -58,7 +58,7 @@ font-5 = Font Awesome 5 Free:style=Solid:pixelsize=10;1
 font-6 = siji:pixelsize=10;1
 
 modules-center = date
-modules-right = eth pulseaudio spotify xkeyboard memory cpu temperature powermenu
+modules-right = eth vpn pulseaudio spotify benjamin xkeyboard memory cpu temperature powermenu
 
 tray-position = right
 tray-padding = 2
@@ -287,4 +287,9 @@ interval = 0.1
 [module/spotify]
 type = custom/script
 exec = ~/.config/polybar/awesomewm/spotify_bar.sh
+interval = 0.5
+
+[module/benjamin]
+type = custom/script
+exec = ~/.config/polybar/awesomewm/benjamin_bar.sh
 interval = 0.5

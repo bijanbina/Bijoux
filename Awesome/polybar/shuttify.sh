@@ -3,7 +3,7 @@
 sh_Mute() 
 {
     PAC_SNK=$(pacmd list-sink-inputs | grep -B 20 'media.name = "Spotify"')
-    PAC_VOL=$(echo "$PAC_SNK" | grep "volume" | cut -d ' ' -f 5 | head -n 1)
+    PAC_VOL=$(echo "$PAC_SNK" | grep "volume" | tr -s ' ' | cut -d ' ' -f 5 | head -n 1)
     PAC_SNK=$(echo "$PAC_SNK" | grep "index" | cut -d ' ' -f 6)
     SP_COUNT=$(echo "$PAC_SNK" | wc -l)
     echo "$SP_COUNT"
