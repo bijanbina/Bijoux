@@ -8,7 +8,13 @@ STATUS=$(~/.config/polybar/spotify.sh)
 
 if [[ "$STATUS" == "" ]]; then
 
-    echo "$STATUS"
+	P_CMD="~/.config/polybar/youtube.sh"
+	STATUS=$(~/.config/polybar/youtube.sh)
+
+fi
+
+if [[ "$STATUS" == "" ]]; then
+
     exit 0
 
 fi
