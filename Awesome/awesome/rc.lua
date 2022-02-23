@@ -389,6 +389,11 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"})
 )
 
+mx_clientkeys = awful.util.table.join(
+    clientkeys,
+    awful.key({ }, "F12", function () awful.spawn.with_shell("~/.config/awesome/keymap.sh change_mx") end)
+)
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.

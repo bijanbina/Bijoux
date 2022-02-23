@@ -8,9 +8,18 @@ AwesomeWM configuration files
 ### Setup Script
 
 ```
-sudo pacman -S picom papirus-icon-theme rofi qt5-tools
+sudo pacman -S picom papirus-icon-theme rofi qt5-tools awesome openconnect xed
 git clone https://github.com/Elv13/collision
 yay polybar
-yay termite 
+yay termite
+yay spotify
 xrandr --output HDMI-3 --output DVI-0 --left-of HDMI-3
+```
+
+### Etc Config Files
+
+```
+bijan ALL=NOPASSWD: /usr/bin/mount*
+bijan ALL=NOPASSWD: /usr/bin/openconnect*
+bijan ALL=NOPASSWD: /usr/bin/pkill*
 ```
