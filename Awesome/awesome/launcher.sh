@@ -34,13 +34,23 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 	sleep 1
 	xdotool type "./train.sh scarlet 50"
 	sleep 0.1
-	xdotool key --delay 120 super+space
+	xdotool key super+space
 	sleep 0.1
 	xdotool keydown super+shift
 	sleep 0.1
-	xdotool key --delay 120 Right Right Right Right Right Down Down
+	xdotool key --delay 120 Right Right Right Right Down Down
 	sleep 0.2
 	xdotool keyup super+shift
+	sleep 0.2
+	xdotool keydown super+alt
+	sleep 0.1
+	xdotool key --delay 120 Right Right
+	sleep 0.2
+	xdotool keyup super+alt
+	sleep 0.2
+	xdotool key --delay 120 ctrl+shift+equal
+	sleep 0.2
+	xdotool key --delay 120 ctrl+shift+equal
 
 elif [[ "$APPLICATION" == "bijoux" ]]; then
 

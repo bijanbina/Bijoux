@@ -298,6 +298,11 @@ globalkeys = gears.table.join(
      		  awful.util.spawn("xed") end,
               {description = "launch xed", group = "launcher"}),
 
+    -- VS Code
+    awful.key({ modkey }, "y", function ()
+     		  awful.util.spawn("code") end,
+              {description = "launch VS Code", group = "launcher"}),
+
     -- Qt Creator
     awful.key({ modkey }, "Insert", function ()
 				awful.spawn.with_shell("~/.config/awesome/launcher.sh qt") end,
@@ -389,9 +394,9 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"})
 )
 
-mx_clientkeys = awful.util.table.join(
+qt_clientkeys = awful.util.table.join(
     clientkeys,
-    awful.key({ }, "F12", function () awful.spawn.with_shell("~/.config/awesome/keymap.sh change_mx") end)
+    awful.key({ }, "KP_Subtract", function () awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_find") end)
 )
 
 -- Bind all key numbers to tags.
@@ -479,6 +484,10 @@ awful.rules.rules = {
     
     { rule = { class = "Polybar" },
       properties = { border_width = 0 }
+    },
+    
+    { rule = { class = "QtCreator" },
+      properties = { keys = qt_clientkeys }
     },
 
     -- Floating clients.
