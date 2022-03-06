@@ -1,0 +1,88 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFile",
+        "when": "true"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openLocalFile",
+        "when": "remoteFileDialogVisible"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFileFolder",
+        "when": "isMacNative && openFolderWorkspaceSupport"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+k ctrl+l",
+        "command": "-editor.toggleFold",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "editor.foldAll",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+k ctrl+0",
+        "command": "-editor.foldAll",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "f6",
+        "command": "actions.find",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "-actions.find",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "f6",
+        "command": "-workbench.action.debug.pause",
+        "when": "debugState == 'running'"
+    },
+    {
+        "key": "f6",
+        "command": "-workbench.action.focusNextPart"
+    },
+    {
+        "key": "shift+f6",
+        "command": "-workbench.action.focusPreviousPart"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "workbench.action.files.openFile"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-toggleSuggestionDetails",
+        "when": "suggestWidgetVisible && textInputFocus"
+    }
+]

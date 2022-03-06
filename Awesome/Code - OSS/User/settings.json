@@ -1,0 +1,50 @@
+{
+    "workbench.colorTheme": "Deeold",
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.wordWrap": "on",
+    "security.workspace.trust.untrustedFiles": "open",
+    "window.restoreWindows": "none",
+    "editor.fontFamily": "'Source Code Pro Medium', 'Droid Sans Mono'",
+    "editor.minimap.enabled": false,
+    "editor.glyphMargin": false,
+    "editor.lineDecorationsWidth": 0,  //undoc and worked!
+    "workbench.colorCustomizations": {
+        "editor.background": "#0f192a",
+        "editorLineNumber.foreground": "#0065bf",
+        "editorLineNumber.activeForeground": "#70a5ff",
+        "editor.lineHighlightBackground": "#1a2d4c",
+		"editor.selectionBackground": "#003b70",
+		"editor.selectionHighlightBackground": "#0f4d57",
+		"editorIndentGuide.background": "#213b53",
+        "editorGutter.background": "#000d1a"
+    },
+    "editor.tokenColorCustomizations": {
+        "comments": "#0088ff",
+        "keywords": "#ff9d00",
+        "functions": "#cccccc",
+        "strings": "#64e335",
+        "textMateRules": [
+            {"scope":["constant"],
+            "settings": {"foreground": "#ff3366"}},
+            {"scope":["string.quoted.double.json.comments"],
+             "settings": {"foreground": "#64e335"}},
+            {"scope":["punctuation.definition.string.begin", "punctuation.definition.string.end"],
+             "settings": {"foreground": "#64e335"}},
+            {"scope":["meta"],
+             "settings": {"foreground": "#cccccc"}},
+            {"scope":["variable"],
+             "settings": {"foreground": "#80ffbb"}},
+            {"scope":["punctuation.definition.variable.shell"],
+             "settings": {"foreground": "#80ffbb"}}
+        ]
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    "files.hotExit": "off",
+    "editor.fontSize": 20,
+    "workbench.editor.pinnedTabSizing": "compact",
+    "workbench.activityBar.visible": false,
+    // "breadcrumbs.enabled": false,
+    "breadcrumbs.filePath": "off",
+    "window.menuBarVisibility": "toggle",
+    "breadcrumbs.enabled": false
+}
