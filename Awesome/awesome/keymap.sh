@@ -14,4 +14,23 @@ elif [[ "$1" == "qt_find" ]]; then
 
 	xdotool key --delay 200 Ctrl+Shift+f
 
+elif [[ "$1" == "qt_continue" ]]; then
+
+	xdotool key --delay 200 Ctrl+Shift+F5
+
+elif [[ "$1" == "qt_restart" ]]; then
+
+	xdotool key --delay 200 Ctrl+Shift+F6
+
+elif [[ "$1" == "qt_refractor" ]]; then
+
+	sleep 0.3
+	xdotool key --delay 200 Menu
+	sleep 0.3
+	xdotool key Down Down Down Down Down Down Down Down Down
+	sleep 0.1
+	xdotool key Right Down
+	# xdotool key --delay 200 Return
+
+
 fi

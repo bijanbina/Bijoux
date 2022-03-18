@@ -215,17 +215,24 @@ globalkeys = gears.table.join(
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
-              {description = "swap with next client by index", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
-              {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
+    awful.key({ modkey, "Shift"   }, "j",
+                function () awful.client.swap.byidx(  1)    end,
+              {description = "swap with next client by index", 
+              group = "client"}),
+    awful.key({ modkey, "Shift"   }, "k", 
+              function () awful.client.swap.byidx( -1)    end,
+              {description = "swap with previous client by index", 
+              group = "client"}),
+    awful.key({ modkey, "Control" }, "j",
+                function () awful.screen. focus_relative( 1) end,
+               {description = "focus the next screen", group = "screen"}),
+    awful.key({ modkey, "Control" }, "k", 
+              function () awful.screen.focus_relative(-1) end,
+              {description = "focus the previous screen", 
+              group = "screen"}),
+    awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "grave",
+    awful.key({ modkey, }, "grave",
         function ()
             -- awful.client.focus.history.previous()
             local t_index = client.focus.first_tag.index
@@ -233,7 +240,7 @@ globalkeys = gears.table.join(
             client.focus:move_to_tag(tag)
             -- if client.focus then
             --    client.focus:raise()
-            --end
+            -- end
         end,
         {description = "put client to prev tag", group = "client"}),
 
@@ -275,18 +282,12 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "v",     function () awful.spawn.with_shell("~/.config/rofi/launcher.sh") end,
+    awful.key({ modkey }, "v",  function ()
+              awful.spawn.with_shell("~/.config/rofi/launcher.sh") end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
+    -- Switch Screen
+    awful.key({ modkey }, "x", function () switch_screen() end,
               {description = "lua execute prompt", group = "awesome"}),
 
     -- Firefox
@@ -338,7 +339,7 @@ globalkeys = gears.table.join(
               {description = "Take a Screenshot", group = "launcher"}),
 
     -- Nautilus
-    awful.key({ modkey },            "e",     function () awful.util.spawn("nautilus") end,
+    awful.key({ modkey },            "e",     function () awful.util.spawn("thunar") end,
               {description = "launch nautilus", group = "launcher"}),
 
     -- Suspend
@@ -466,66 +467,7 @@ clientbuttons = gears.table.join(
 root.keys(globalkeys)
 -- }}}
 
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
-    },
-    
-    { rule = { class = "Polybar" },
-      properties = { border_width = 0 }
-    },
-    
-    { rule = { class = "QtCreator" },
-      properties = { keys = qt_clientkeys }
-    },
-
-    -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-          "pinentry",
-        },
-        class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"},
-
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
-        name = {
-          "Event Tester",  -- xev.
-        },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
-}
--- }}}
+require("rules")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.

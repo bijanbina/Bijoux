@@ -8,6 +8,6 @@ if [[ "$IS_ON" == "1" ]]; then
 
 elif [[ "$IS_ON" == "0" ]]; then
 
-	echo "48868" | sudo openconnect c2.kmak.us:443 -u km93057 --passwd-on-stdin --reconnect-timeout 5 --servercert "pin-sha256:+CvvZlDqyHOZeoW9vdudh5u++e0wYZS+pXkn5zXfjMI=" &
+	echo "48868" | sudo openconnect c2.kmak.us:443 -u km93057 --passwd-on-stdin --reconnect-timeout 5 &
 
 fi
