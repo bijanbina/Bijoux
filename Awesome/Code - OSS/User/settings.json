@@ -14,8 +14,10 @@
         "editorLineNumber.activeForeground": "#70a5ff",
         "editor.lineHighlightBackground": "#1a2d4c",
 		"editor.selectionBackground": "#003b70",
-		"editor.selectionHighlightBackground": "#0f4d57",
+		"editor.selectionHighlightBackground": "#0b343a",
 		"editorIndentGuide.background": "#213b53",
+		"list.activeSelectionBackground": "#333e52",
+		"list.activeSelectionForeground": "#e3f0ff",
         "editorGutter.background": "#000d1a"
     },
     "editor.tokenColorCustomizations": {
@@ -40,11 +42,12 @@
     },
     "workbench.editor.untitled.hint": "hidden",
     "files.hotExit": "off",
-    "editor.fontSize": 20,
+    "editor.fontSize": 18,
     "workbench.editor.pinnedTabSizing": "compact",
     "workbench.activityBar.visible": false,
     // "breadcrumbs.enabled": false,
     "breadcrumbs.filePath": "off",
     "window.menuBarVisibility": "toggle",
-    "breadcrumbs.enabled": false
+    "breadcrumbs.enabled": false,
+    "editor.autoIndent": "brackets"
 }
