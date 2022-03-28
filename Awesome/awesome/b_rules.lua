@@ -1,39 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
-qt_clientkeys = awful.util.table.join(
-    clientkeys,
-    awful.key({ }, "KP_Subtract", function ()
-			  awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_find")
-			  end),
-
-    -- Continue(Debug)
-    awful.key({ }, "KP_Add", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_continue")
-              end, {description = "Copy", group = "launcher"}),
-
-    -- Restart Debugger
-    awful.key({ }, "KP_Multiply", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_restart")
-              end, {description = "Copy", group = "launcher"}),
-
-    -- Refractor
-    awful.key({ }, "KP_Divide", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_refractor")
-              end, {description = "Copy", group = "launcher"})
-)
-
-vscode_clientkeys = awful.util.table.join(
-    clientkeys,
-    awful.key({ }, "KP_Divide", function ()
-    awful.spawn.with_shell("~/.config/awesome/keymap_vscode.sh 1")
-    end),
-    awful.key({ }, "KP_Multiply", function ()
-    awful.spawn.with_shell("~/.config/awesome/keymap_vscode.sh 2")
-    end)
-)
-
-
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
