@@ -167,7 +167,7 @@ globalkeys = gears.table.join(
     awful.key({ }, "Pause", function () awful.spawn.with_shell("systemctl suspend") end,
               {description = "Suspend system", group = "launcher"}),
 
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    -- Qt Creator
+    awful.key({ modkey }, "p", function() awful.spawn.with_shell("qtcreator") end,
               {description = "show the menubar", group = "launcher"})
 )

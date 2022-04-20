@@ -32,7 +32,7 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 	sleep 2
 	awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
 	sleep 1
-	xdotool type "./train.sh scarlet 50"
+	xdotool type "./record.sh scarlet 50"
 	sleep 0.1
 	xdotool key super+space
 	sleep 0.1

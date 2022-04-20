@@ -14,7 +14,6 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
 
 require("awful.remote")
 
@@ -113,7 +112,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6" }, s, awful.layout.layouts[1])
 
 end)
 -- }}}
@@ -133,10 +132,21 @@ root.buttons(gears.table.join(
 require("b_keysGlobal")
 require("b_keysClient")
 
+local focus_timer = timer({ timeout = 0.2 })
+
+function focusUnderMouse()
+	local c = awful.mouse.client_under_pointer()
+	if not (c == nil) then
+		client.focus = c
+		c:raise()
+	end
+	focus_timer:stop()
+end
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 5 do
+for i = 1, 6 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -147,6 +157,8 @@ for i = 1, 5 do
 		                       tag:view_only()
 		                    end
 						end
+						focus_timer:connect_signal("timeout", focusUnderMouse)
+						focus_timer:start()
                   end,
                   {description = "view tag #"..i, group = "tag"}),
         -- Toggle tag display.
@@ -215,46 +227,6 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-end)
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.

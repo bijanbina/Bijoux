@@ -2,38 +2,6 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
 
-qt_clientkeys = awful.util.table.join(
-    clientkeys,
-    awful.key({ }, "KP_Subtract", function ()
-			  awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_find")
-			  end),
-
-    -- Continue(Debug)
-    awful.key({ }, "KP_Add", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_continue")
-              end, {description = "Copy", group = "launcher"}),
-
-    -- Restart Debugger
-    awful.key({ }, "KP_Multiply", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_restart")
-              end, {description = "Copy", group = "launcher"}),
-
-    -- Refractor
-    awful.key({ }, "KP_Divide", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_refractor")
-              end, {description = "Copy", group = "launcher"})
-)
-
-vscode_clientkeys = awful.util.table.join(
-    clientkeys,
-    awful.key({ }, "KP_Divide", function ()
-    awful.spawn.with_shell("~/.config/awesome/keymap_vscode.sh 1")
-    end),
-    awful.key({ }, "KP_Multiply", function ()
-    awful.spawn.with_shell("~/.config/awesome/keymap_vscode.sh 2")
-    end)
-)
-
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
@@ -76,4 +44,36 @@ clientkeys = gears.table.join(
             c:raise()
         end ,
         {description = "(un)maximize horizontally", group = "client"})
+)
+
+qt_clientkeys = awful.util.table.join(
+    clientkeys,
+    awful.key({ }, "KP_Subtract", function ()
+			  awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_find")
+			  end),
+
+    -- Continue(Debug)
+    awful.key({ }, "KP_Add", function ()
+              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_continue")
+              end, {description = "Copy", group = "launcher"}),
+
+    -- Restart Debugger
+    awful.key({ }, "KP_Multiply", function ()
+              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_restart")
+              end, {description = "Copy", group = "launcher"}),
+
+    -- Refractor
+    awful.key({ }, "KP_Divide", function ()
+              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_refractor")
+              end, {description = "Copy", group = "launcher"})
+)
+
+vscode_clientkeys = awful.util.table.join(
+    clientkeys,
+    awful.key({ }, "KP_Divide", function ()
+    awful.spawn.with_shell("~/.config/awesome/keymap_vscode.sh 1")
+    end),
+    awful.key({ }, "KP_Multiply", function ()
+    awful.spawn.with_shell("~/.config/awesome/keymap_vscode.sh 2")
+    end)
 )

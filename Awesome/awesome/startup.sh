@@ -12,3 +12,4 @@ xset s noblank
 #/usr/lib/gsd-xsettings &
 #/usr/bin/nm-applet &
 #setxkbmap -layout \"us,ir\" -option \"grp:alt_shift_toggle\" &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
