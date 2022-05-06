@@ -11,12 +11,31 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                     callback = function (c)
+                         c:struts({top = 25})
+                     end
      }
     },
     
     { rule = { class = "Polybar" },
-      properties = { border_width = 0 }
+      properties = { border_width = 0,
+                     raise = true }
+    },
+
+    { rule = { class = "PnaUI" },
+      properties = { border_width = 0,
+                     floating = true,
+                     tag = screen[1].tags[3],
+                     placement = awful.placement.centered }
+    },
+    
+    { rule = { class = "Nxplayer.bin" },
+      properties = { keys = mx_clientkeys,
+                     callback = function (c)
+                         c.fullscreen = true
+                     end
+                   }
     },
     
     { rule = { class = "QtCreator" },

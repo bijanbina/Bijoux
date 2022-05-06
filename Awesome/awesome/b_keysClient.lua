@@ -68,6 +68,13 @@ qt_clientkeys = awful.util.table.join(
               end, {description = "Copy", group = "launcher"})
 )
 
+mx_clientkeys = awful.util.table.join(
+    clientkeys,
+    -- awful.key({ }, " ", function () awful.spawn.with_shell("~/.config/awesome/keymap_mx.sh change") end),
+    awful.key({ }, "Right", function () awful.spawn.with_shell("~/.config/awesome/keymap_mx.sh right") end),
+    awful.key({ }, "Down", function () awful.spawn.with_shell("~/.config/awesome/keymap_mx.sh down") end)
+)
+
 vscode_clientkeys = awful.util.table.join(
     clientkeys,
     awful.key({ }, "KP_Divide", function ()

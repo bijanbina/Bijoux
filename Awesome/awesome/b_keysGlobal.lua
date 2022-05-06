@@ -10,14 +10,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Up",   function () 
               require('awful'); screen[1].tags[4]:view_only()
               require('awful'); screen[2].tags[4]:view_only() end,
-              {description = "view previous", group = "tag"}),
-    awful.key({ modkey,           }, "Right",   tag_next,
-              {description = "view previous", group = "tag"}),
-    awful.key({ modkey,           }, "Down",  tag_prev,
+              {description = "view tag 4", group = "tag"}),
+    awful.key({ modkey,           }, "Right",  tag_next,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "Left",   function () 
-              require('awful'); screen[1].tags[1]:view_only()
-              require('awful'); screen[2].tags[1]:view_only() end,
+    awful.key({ modkey,           }, "Left",   tag_prev,
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Tab", tag_history,
               {description = "go back", group = "tag"}),

@@ -32,5 +32,4 @@ elif [[ "$1" == "qt_refractor" ]]; then
 	xdotool key Right Down
 	# xdotool key --delay 200 Return
 
-
 fi
