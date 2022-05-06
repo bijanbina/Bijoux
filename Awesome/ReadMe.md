@@ -8,7 +8,7 @@ AwesomeWM configuration files
 ### Setup Script
 
 ```
-sudo pacman -S picom papirus-icon-theme rofi qt5-tools awesome openconnect xed polkit-gnome code
+sudo pacman -S picom papirus-icon-theme rofi qt5-tools awesome openconnect xed polkit-gnome code lxdm
 git clone https://github.com/Elv13/collision
 yay polybar
 yay termite
