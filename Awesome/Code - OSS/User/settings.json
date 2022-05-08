@@ -18,7 +18,8 @@
 		"editorIndentGuide.background": "#213b53",
 		"list.activeSelectionBackground": "#333e52",
 		"list.activeSelectionForeground": "#e3f0ff",
-        "editorGutter.background": "#000d1a"
+        "editorGutter.background": "#000d1a",
+        "editorWhitespace.foreground": "#3f495a",
     },
     "editor.tokenColorCustomizations": {
         "comments": "#0088ff",
@@ -49,5 +50,14 @@
     "breadcrumbs.filePath": "off",
     "window.menuBarVisibility": "toggle",
     "breadcrumbs.enabled": false,
-    "editor.autoIndent": "brackets"
+    "editor.autoIndent": "brackets",
+    "workbench.editor.decorations.badges":false,
+    "workbench.editor.decorations.colors":false,
+    "workbench.editor.labelFormat":"short",
+    "editor.renderWhitespace": "all",
+    "editor.comments.insertSpace": false,
+    "editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.accessibilitySupport": "off",
+	"window.zoomLevel": 1
 }

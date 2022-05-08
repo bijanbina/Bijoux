@@ -18,7 +18,6 @@ require("awful.remote")
 require("bijoux")
 
 local wall_path = "/home/bijan/Pictures/Wallpaper/Brooklyn_Bridge_by_seenew.jpg"
--- local wall_path = "/home/bijan/Pictures/Wallpapers/Marm3.png"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -147,6 +146,16 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Focus urgent clients automatically(Firefox)
+--client.connect_signal("property::urgent", function(c)
+--	c.minimized = false
+--	c:jump_to()
+--end)
+
+tag.connect_signal("property::urgent", function(t)
+    t:view_only()
+end)
 
 -- Bijan Start
 beautiful.useless_gap = 10
