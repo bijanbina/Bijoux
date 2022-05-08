@@ -165,5 +165,9 @@ globalkeys = gears.table.join(
 
     -- Qt Creator
     awful.key({ modkey }, "p", function() awful.spawn.with_shell("qtcreator") end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "launch qt", group = "launcher"}),
+
+    -- Qt Creator
+    awful.key({ modkey }, "i", function() awful.spawn.with_shell("~/.config/awesome/launcher.sh benjamin") end,
+              {description = "launch git commit for benjamin", group = "launcher"})
 )

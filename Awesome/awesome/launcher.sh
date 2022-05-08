@@ -4,7 +4,7 @@ APPLICATION="$1"
 
 if [[ "$APPLICATION" == "qt" ]]; then
 
-	TAG="4"
+	TAG="2"
 	BATOOL="qtcreator ~/Project/Benjamin/Tools/BaTool.pro"
 	REBOND="qtcreator ~/Project/RAIIS/Rebound/Rebound.pro"
 
@@ -52,6 +52,23 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 	sleep 0.2
 	xdotool key --delay 120 ctrl+shift+equal
 
+elif [[ "$APPLICATION" == "benjamin" ]]; then
+
+	xdotool mousemove 2960 500
+	TAG="1"
+	APP1="termite -d ~/.config/awesome/scripts -e ./benjamin.sh"
+
+	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
+	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
+
+	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+	sleep 2
+	xdotool click 1
+	sleep 0.2
+	xdotool key --delay 120 ctrl+shift+equal
+	sleep 0.2
+	xdotool key --delay 120 ctrl+shift+equal
+
 elif [[ "$APPLICATION" == "bijoux" ]]; then
 
 	TAG="2"
@@ -93,7 +110,7 @@ elif [[ "$APPLICATION" == "meld" ]]; then
 	TAG="5"
 	APP1="meld ~/Project/Bijoux/Awesome/awesome/ ~/.config/awesome/"
 	APP2="meld ~/Project/Bijoux/Awesome/polybar/ ~/.config/polybar/"
-	APP3="meld ~/Project/Bijoux/Awesome/picom/ ~/.config/picom/"
+	APP3="meld ~/Project/Bijoux/Awesome/Code\\ -\\ OSS/ ~/.config/Code\\ -\\ OSS/"
 
 	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
 	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"

@@ -13,15 +13,18 @@ DBUS_PATH="--dest=com.binaee.rebound / com.binaee.rebound"
 dbus-send --session $DBUS_PATH.type  string:"101"
 
 ./open_graph.sh
-xdotool key --delay 50 Super_L+k
 read -p "Day: " REQ_DATE
-xdotool key --delay 50 Super_L+k
+
+sleep 0.5
+xdotool key --delay 100 Super_L+k
+sleep 0.1
 
 cd ~/Project/Benjamin
 
-reset
+clear
 
-if [[ "$REQ_DATE" -gt "$DD" ]]; then
+# remove leading zero -> #0
+if [[ "$REQ_DATE" -gt "${DD#0}" ]]; then
 
 	MM=$(($MM-1))
 	MM=$(printf "%02d" $MM) #Add leading zero if needed
@@ -45,11 +48,29 @@ git log --oneline -10 --format="%C(Yellow)  %ad %C(reset) %s" --date=short
 printf "\n\n\n\n\n\nGit Status:\n"
 
 git status -s
-sleep 0.2
 xdotool key --delay 50 Super_L+q
+sleep 0.5
 
 
 ZENITY_OPT='zenity --entry  --width 800 --text='
 COMMIT_MSG=$(GDK_DPI_SCALE=2 $ZENITY_OPT"Commit Message" --entry-text="BaTool: ")
+clear
 
+if [[ "$COMMIT_MSG" ]]; then
+
+	git commit -m "$COMMIT_MSG"
+	echo "This window will die in 5 seconds..."
+	sleep 10
+
+else
+	
+	echo "Commit Canceled"
+	echo "This window will die in 3 seconds..."
+	sleep 3
+
+fi
 timedatectl set-ntp true
+
+TAG="2"
+awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
+awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
