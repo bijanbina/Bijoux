@@ -161,9 +161,8 @@ end)
 beautiful.useless_gap = 10
 
 -- autostart
+awful.spawn.with_shell("/bin/bash ~/.config/awesome/startup.sh")
 awful.spawn.with_shell("picom --experimental-backends")
 awful.spawn.with_shell("~/.config/polybar/launch.sh")
-awful.spawn.with_shell("xrandr --output HDMI-3 --output DVI-0 --left-of HDMI-3")
 awful.spawn.with_shell("/usr/lib/gsd-xsettings")
 awful.spawn.with_shell("/usr/bin/nm-applet")
-awful.spawn.with_shell("/bin/bash ~/.config/awesome/startup.sh")

@@ -70,7 +70,3 @@ else
 
 fi
 timedatectl set-ntp true
-
-TAG="2"
-awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
-awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"

@@ -110,13 +110,14 @@ elif [[ "$APPLICATION" == "meld" ]]; then
 	TAG="5"
 	APP1="meld ~/Project/Bijoux/Awesome/awesome/ ~/.config/awesome/"
 	APP2="meld ~/Project/Bijoux/Awesome/polybar/ ~/.config/polybar/"
-	APP3="meld ~/Project/Bijoux/Awesome/Code\\ -\\ OSS/ ~/.config/Code\\ -\\ OSS/"
 
 	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
 	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
 
 	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
 	awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
-	awesome-client "spawn_tag('$APP3', screen[2].tags[$TAG])"
+	sleep 1
+	meld "$HOME/Project/Bijoux/Awesome/Code - OSS/User/keybindings.json" "$HOME/.config/Code - OSS/User/keybindings.json"
+	meld "$HOME/Project/Bijoux/Awesome/Code - OSS/User/settings.json" "$HOME/.config/Code - OSS/User/settings.json"
 
 fi
