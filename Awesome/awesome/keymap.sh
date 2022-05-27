@@ -32,4 +32,20 @@ elif [[ "$1" == "qt_refractor" ]]; then
 	xdotool key Right Down
 	# xdotool key --delay 200 Return
 
+elif [[ "$1" == "valgrind" ]]; then
+
+	sleep 0.3
+	xdotool key --delay 200 Ctrl+Shift+s
+	xdotool mousemove 200 500
+	sleep 0.2
+	termite -d /mnt/sdb6/Temp/Benjamin/Tools/ -e "./valgrind.sh" &
+	#sleep 20
+
+	#xdotool mousemove 200 500
+	#xdotool key --delay 200 Ctrl+c
+	#sleep 1
+
+	#xdotool mousemove 2500 500
+	#sleep 0.2
+	#xdotool key --delay 200 Ctrl+Home
 fi

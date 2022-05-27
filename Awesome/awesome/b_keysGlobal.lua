@@ -30,8 +30,6 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j",
@@ -81,10 +79,6 @@ globalkeys = gears.table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    --awful.key({ modkey,           }, "space", function () awful.layout.inc(-1)                end,
-    --          {description = "select next", group = "layout"}),
-    --awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-    --          {description = "select previous", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n",
               function ()
@@ -98,28 +92,54 @@ globalkeys = gears.table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
-    -- Prompt
-    awful.key({ modkey }, "v",  function ()
-              awful.spawn.with_shell("~/.config/rofi/launcher.sh") end,
-              {description = "run prompt", group = "launcher"}),
-
-    -- Switch Screen
-    awful.key({ modkey }, "x", function () switch_screen() end,
-              {description = "lua execute prompt", group = "awesome"}),
-
     -- Firefox
-    awful.key({ modkey },            "d",     function () awful.util.spawn("firefox") end,
+    awful.key({ modkey }, "d", function () awful.util.spawn("firefox --remote-debugging-port") end,
               {description = "launch firefox", group = "launcher"}),
+
+    -- Nautilus
+    awful.key({ modkey }, "e", function () awful.util.spawn("nautilus") end,
+              {description = "launch nautilus", group = "launcher"}),
 
     -- Gedit
     awful.key({ modkey }, "g", function ()
      		  awful.util.spawn("xed") end,
               {description = "launch xed", group = "launcher"}),
 
+    -- Benjamin
+    awful.key({ modkey }, "i", function() awful.spawn.with_shell("~/.config/awesome/launcher.sh benjamin") end,
+              {description = "launch git commit for benjamin", group = "launcher"}),
+
+    -- Telegram
+    awful.key({ modkey }, "t", function ()
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh telegram") end,
+              {description = "launch telegram", group = "launcher"}),
+
+    -- Spotify
+    awful.key({ modkey }, "s", function ()
+				awful.spawn.with_shell("~/.config/awesome/launcher.sh spotify") end,
+              {description = "launch Spotify", group = "launcher"}),
+
+    -- Qt Creator
+    awful.key({ modkey }, "p", function() awful.spawn.with_shell("/mnt/sdb6/Softwares/Qt/Tools/QtCreator/bin/qtcreator") end,
+              {description = "launch qt", group = "launcher"}),
+
     -- VS Code
     awful.key({ modkey }, "y", function ()
      		  awful.util.spawn("code") end,
               {description = "launch VS Code", group = "launcher"}),
+
+    -- Roofi
+    awful.key({ modkey }, "v",  function ()
+              awful.spawn.with_shell("~/.config/rofi/launcher.sh") end,
+              {description = "run prompt", group = "launcher"}),
+    
+	-- GitKraken
+	awful.key({ modkey }, "w", function () awful.spawn.with_shell("gitkraken") end,
+              {description = "launch GitKraken", group = "launcher"}),
+
+    -- Switch Screen
+    awful.key({ modkey }, "x", function () switch_screen() end,
+              {description = "switch screen", group = "awesome"}),
 
     -- Qt Creator
     awful.key({ modkey }, "Insert", function ()
@@ -141,33 +161,11 @@ globalkeys = gears.table.join(
 				awful.spawn.with_shell("~/.config/awesome/launcher.sh meld") end,
               {description = "launch Meld on Awesome", group = "launcher"}),
 
-    -- Telegram
-    awful.key({ modkey }, "t", function ()
-				awful.spawn.with_shell("~/.config/awesome/launcher.sh telegram") end,
-              {description = "launch telegram", group = "launcher"}),
-
-    -- Spotify
-    awful.key({ modkey }, "s", function ()
-				awful.spawn.with_shell("~/.config/awesome/launcher.sh spotify") end,
-              {description = "launch Spotify", group = "launcher"}),
-
     -- Screen Shot
     awful.key({ }, "Print", function () awful.util.spawn("scrot -d 2 -s -e 'xclip -selection clipboard -t image/png -i $f'") end,
               {description = "Take a Screenshot", group = "launcher"}),
 
-    -- Nautilus
-    awful.key({ modkey }, "e", function () awful.util.spawn("nautilus") end,
-              {description = "launch nautilus", group = "launcher"}),
-
     -- Suspend
     awful.key({ }, "Pause", function () awful.spawn.with_shell("systemctl suspend") end,
-              {description = "Suspend system", group = "launcher"}),
-
-    -- Qt Creator
-    awful.key({ modkey }, "p", function() awful.spawn.with_shell("qtcreator") end,
-              {description = "launch qt", group = "launcher"}),
-
-    -- Qt Creator
-    awful.key({ modkey }, "i", function() awful.spawn.with_shell("~/.config/awesome/launcher.sh benjamin") end,
-              {description = "launch git commit for benjamin", group = "launcher"})
+              {description = "Suspend system", group = "launcher"})
 )

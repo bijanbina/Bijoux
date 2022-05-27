@@ -57,15 +57,20 @@ qt_clientkeys = awful.util.table.join(
               awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_continue")
               end, {description = "Copy", group = "launcher"}),
 
-    -- Restart Debugger
-    awful.key({ }, "KP_Multiply", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_restart")
-              end, {description = "Copy", group = "launcher"}),
+    ---- Restart Debugger
+    --awful.key({ }, "KP_Multiply", function ()
+    --          awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_restart")
+    --          end, {description = "Copy", group = "launcher"}),
 
     -- Refractor
     awful.key({ }, "KP_Divide", function ()
               awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_refractor")
-              end, {description = "Copy", group = "launcher"})
+              end, {description = "Copy", group = "launcher"}),
+
+    -- Valgrind
+    awful.key({ }, "KP_Multiply", function ()
+              awful.spawn.with_shell("~/.config/awesome/keymap.sh valgrind")
+              end, {description = "valgrind", group = "launcher"})
 )
 
 mx_clientkeys = awful.util.table.join(
