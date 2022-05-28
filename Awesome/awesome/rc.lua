@@ -17,7 +17,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.remote")
 require("bijoux")
 
-local wall_path = "/home/bijan/Pictures/Wallpaper/Phoenix-bg-alpha.jpg"
+local wall_path = "/home/bijan/.config/awesome/wallpaper/wallpaper.png"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to

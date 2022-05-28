@@ -46,10 +46,6 @@ awful.rules.rules = {
       properties = { keys = vscode_clientkeys }
     },
 
-	{ rule_any = { class = {"Yad"} },
-	               properties = {floating = true} 
-	},
-
     -- Floating clients.
     { rule_any = {
         instance = {

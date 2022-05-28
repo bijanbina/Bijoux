@@ -5,8 +5,11 @@ xset s off
 xset -dpms
 xset s noblank
 
-MSI=$(xrandr | grep "600mm x 340mm") #MSI
-if [[ "$MSI" ]]; then
+#always numpad is on: -option numpad:mac
+setxkbmap -layout "us,ir" -option "grp:alt_shift_toggle" -option numpad:mac
+
+PC_NAME=$(hostname)
+if [[ "$PC_NAME" == "Bijan-UX390" ]]; then
 
 	xrandr --output DP1 --output eDP1 --off
 	
@@ -37,3 +40,5 @@ setxkbmap -layout "us,ir" -option "grp:alt_shift_toggle" &
 perWindowLayoutD & #pre window keyboard layout
 # Clipboard Fix Window Close Bug
 parcellite &
+#must be called after setxkbmap
+xmodmap -e "keycode 135 = Super_L"

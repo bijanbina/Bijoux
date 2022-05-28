@@ -13,19 +13,22 @@ function spawn_tag(command, tag)
 	awful.util.spawn_with_shell(command)
 end
 
-function tag_next() 
-	awful.tag.viewnext(screen[1])
-	awful.tag.viewnext(screen[2])
+function tag_next()
+	for s = 1, screen.count() do
+		awful.tag.viewnext(screen[s])
+	end
 end
 
-function tag_prev() 
-	awful.tag.viewprev(screen[1])
-	awful.tag.viewprev(screen[2])
+function tag_prev()
+	for s = 1, screen.count() do
+		awful.tag.viewprev(screen[s])
+	end
 end
 
-function tag_history() 
-	awful.tag.history.restore(screen[1])
-	awful.tag.history.restore(screen[2])
+function tag_history()
+	for s = 1, screen.count() do
+		awful.tag.history.restore(screen[s])
+	end
 end
 
 function switch_screen()
