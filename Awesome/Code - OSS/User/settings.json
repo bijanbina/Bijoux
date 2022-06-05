@@ -58,6 +58,5 @@
     "editor.comments.insertSpace": false,
     "editor.insertSpaces": false,
 	"editor.detectIndentation": false,
-	"editor.accessibilitySupport": "off",
-	"window.zoomLevel": 1
+	"editor.accessibilitySupport": "off"
 }
