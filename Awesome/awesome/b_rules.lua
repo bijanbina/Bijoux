@@ -1,5 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+local naughty = require('naughty')
 
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -27,7 +28,18 @@ awful.rules.rules = {
       properties = { border_width = 0,
                      floating = true,
                      tag = screen[1].tags[3],
-                     placement = awful.placement.centered }
+                     placement = awful.placement.centered
+                   }
+    },
+
+    { rule = { class = "Chess" },
+      properties = { border_width = 0,
+	  				 keys = chess_clientkeys,
+					 ontop = true,
+                     callback = function (c)
+						 c.maximized = true
+                     end
+                   }
     },
     
     { rule = { class = "Nxplayer.bin" },

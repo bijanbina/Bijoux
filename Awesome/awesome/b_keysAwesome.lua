@@ -2,15 +2,16 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local naughty = require('naughty')  -- Debug
 
-
-local focus_timer = timer({ timeout = 0.2 })
+local focus_timer = timer({ timeout = 0.5 })
 
 function focusUnderMouse()
 	local c = awful.mouse.client_under_pointer()
 	if not (c == nil) then
-		client.focus = c
+		--naughty.notify({text='focusUnderMouse' .. c.name})
 		c:raise()
+		client.focus = c
 	end
 	focus_timer:stop()
 end

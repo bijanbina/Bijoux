@@ -6,7 +6,6 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 require("collision")()
-require("awful.autofocus")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -16,6 +15,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 
 require("awful.remote")
 require("bijoux")
+require("b_focus")
 
 local wall_path = "/home/bijan/.config/awesome/wallpaper/wallpaper.jpg"
 
@@ -159,6 +159,10 @@ end)
 
 -- Bijan Start
 beautiful.useless_gap = 10
+
+-- Swap Screen
+sort_screen()
+--require("awful.autofocus")
 
 -- autostart
 awful.spawn.with_shell("/bin/bash ~/.config/awesome/startup.sh")
