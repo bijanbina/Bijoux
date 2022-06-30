@@ -27,8 +27,8 @@ elif [[ "$1" == "qt_refractor" ]]; then
 	sleep 0.3
 	xdotool key --delay 200 Menu
 	sleep 0.3
-	xdotool key Down Down Down Down Down Down Down Down Down
-	sleep 0.1
+	xdotool key Down Down Down Down Down Down Down Down
+	sleep 0.3
 	xdotool key Right Down
 	# xdotool key --delay 200 Return
 

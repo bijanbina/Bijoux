@@ -19,21 +19,21 @@ if [[ "$APPLICATION" == "qt" ]]; then
 
 	awesome-client "awful = require('bijoux'); set_tag($TAG)"
 
-	awesome-client "spawn_tag('$BATOOL', screen[2].tags[$TAG])"
+	awesome-client "spawn_tag('$BATOOL', screen[1].tags[$TAG])"
 	sleep 2
-	awesome-client "spawn_tag('$REBOND', screen[1].tags[$TAG])"
+	awesome-client "spawn_tag('$REBOND', screen[2].tags[$TAG])"
 
 elif [[ "$APPLICATION" == "kaldi" ]]; then
 
 	xdotool mousemove 960 500
 	TAG="2"
-	APP1="nautilus ~/Project/Benjamin/Nato"
-	APP2="termite -d ~/Project/Benjamin/Nato"
+	APP1="termite -d ~/Project/Benjamin/Nato"
+	APP2="nautilus ~/Project/Benjamin/Nato"
 
 	awesome-client "awful = require('bijoux'); set_tag($TAG)"
 
 	if [[ "$IS_PC" ]]; then
-		awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+		awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
 	fi
 	sleep 1
 
@@ -41,10 +41,9 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 		echo -n "~/Project/Benjamin/Nato/audio/train/scarlet" | xclip -i -sel clip
 		xdotool key --delay 120 ctrl+t ctrl+l ctrl+v Return
 		sleep 2
-		awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
-	else
-		awesome-client "spawn_tag('$APP2', screen[1].tags[$TAG])"
 	fi
+	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+
 	sleep 1
 	xdotool type "./record.sh $KALDI_CAT 50"
 	sleep 0.1
@@ -70,12 +69,16 @@ elif [[ "$APPLICATION" == "benjamin" ]]; then
 
 	xdotool mousemove 2960 500
 	TAG="1"
-	APP1="termite -d ~/.config/awesome/scripts -e ./benjamin.sh"
+	APP="termite -d ~/.config/awesome/scripts -e ./benjamin.sh"
 
-	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
 	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
+	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
 
-	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+	if [[ "$IS_PC" ]]; then
+		awesome-client "spawn_tag('$APP', screen[2].tags[$TAG])"
+	else
+		awesome-client "spawn_tag('$APP', screen[1].tags[$TAG])"
+	fi
 	sleep 2
 	xdotool click 1
 	sleep 0.2
@@ -86,40 +89,43 @@ elif [[ "$APPLICATION" == "benjamin" ]]; then
 elif [[ "$APPLICATION" == "bijoux" ]]; then
 
 	TAG="2"
-	APP1="nautilus ~/.config/awesome"
-	APP2="gitkraken"
+	APP1="gitkraken"
+	APP2="nautilus ~/.config/awesome"
 
 	awesome-client "awful = require('bijoux'); set_tag($TAG)"
 
-	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
-	sleep 1
-	echo -n "~/Project/Bijoux/Awesome/awesome" | xclip -i -sel clip
-	xdotool key --delay 120 ctrl+t ctrl+l ctrl+v Return
-	sleep 2
 	if [[ "$IS_PC" ]]; then
 		awesome-client "spawn_tag('$APP2', screen[2].tags[$TAG])"
 	else
 		awesome-client "spawn_tag('$APP2', screen[1].tags[$TAG])"
 	fi
+	sleep 1
+	echo -n "~/Project/Bijoux/Awesome/awesome" | xclip -i -sel clip
+	xdotool key --delay 120 ctrl+t ctrl+l ctrl+v Return
+	sleep 2
+	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
 
 elif [[ "$APPLICATION" == "telegram" ]]; then
 
 	TAG="4"
-	APP1="$TELEGRAM_PATH"
+	APP="$TELEGRAM_PATH"
 
-	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
 	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
+	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
 
-	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+	if [[ "$IS_PC" ]]; then
+		awesome-client "spawn_tag('$APP', screen[2].tags[$TAG])"
+	else
+		awesome-client "spawn_tag('$APP', screen[1].tags[$TAG])"
+	fi
 
 elif [[ "$APPLICATION" == "spotify" ]]; then
 
 	TAG="5"
-	APP1="spotify"
+	APP="spotify"
 
 	awesome-client "awful = require('bijoux'); set_tag($TAG)"
-
-	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
+	awesome-client "spawn_tag('$APP', screen[1].tags[$TAG])"
 
 elif [[ "$APPLICATION" == "esi-linux" ]]; then
 

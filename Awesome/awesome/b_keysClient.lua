@@ -1,6 +1,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
+require("bijoux")
 
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
@@ -52,16 +53,6 @@ qt_clientkeys = awful.util.table.join(
 			  awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_find")
 			  end),
 
-    -- Continue(Debug)
-    awful.key({ }, "KP_Add", function ()
-              awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_continue")
-              end, {description = "Copy", group = "launcher"}),
-
-    ---- Restart Debugger
-    --awful.key({ }, "KP_Multiply", function ()
-    --          awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_restart")
-    --          end, {description = "Copy", group = "launcher"}),
-
     -- Refractor
     awful.key({ }, "KP_Divide", function ()
               awful.spawn.with_shell("~/.config/awesome/keymap.sh qt_refractor")
@@ -88,4 +79,10 @@ vscode_clientkeys = awful.util.table.join(
     awful.key({ }, "KP_Multiply", function ()
     awful.spawn.with_shell("~/.config/awesome/keymap_vscode.sh 2")
     end)
+)
+
+chess_clientkeys = awful.util.table.join(
+    clientkeys,
+    awful.key({ }, "Right", function (c) switch_screen_app(c) end),
+    awful.key({ }, "Left", function (c) switch_screen_app(c) end)
 )
