@@ -67,7 +67,12 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 
 elif [[ "$APPLICATION" == "benjamin" ]]; then
 
-	xdotool mousemove 2960 500
+
+	if [[ "$IS_PC" ]]; then
+		xdotool mousemove 2960 500
+	else
+		xdotool mousemove 1060 500
+	fi
 	TAG="1"
 	APP="termite -d ~/.config/awesome/scripts -e ./benjamin.sh"
 
@@ -81,9 +86,9 @@ elif [[ "$APPLICATION" == "benjamin" ]]; then
 	fi
 	sleep 2
 	xdotool click 1
-	sleep 0.2
+	sleep 0.3
 	xdotool key --delay 120 ctrl+shift+equal
-	sleep 0.2
+	sleep 0.3
 	xdotool key --delay 120 ctrl+shift+equal
 
 elif [[ "$APPLICATION" == "bijoux" ]]; then
@@ -145,6 +150,14 @@ elif [[ "$APPLICATION" == "esi-windows" ]]; then
 
 	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
 
+elif [[ "$APPLICATION" == "mmm" ]]; then
+
+	TAG="2"
+	APP1="/usr/NX/bin/nxplayer --session /home/bijan/Documents/NoMachine/M-pc.nxs"
+
+	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
+
+	awesome-client "spawn_tag('$APP1', screen[1].tags[$TAG])"
 
 elif [[ "$APPLICATION" == "meld" ]]; then
 

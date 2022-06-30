@@ -1,10 +1,16 @@
 #!/bin/bash
 
-CHRM_ARG="--remote-debugging-port=9232 --window-size=920,400 --window-position=2900,650 "
+PC_NAME=$(hostname)
+if [[ "$PC_NAME" == "Bijan-UX390" ]]; then
+	W_POS="--window-position=900,650"
+else
+	W_POS="--window-position=2900,650"
+fi
+CHRM_ARG="--remote-debugging-port=9232 --window-size=920,400 $W_POS"
 chromium $CHRM_ARG --app="https://github.com/bijanbina" 2>/dev/null & disown
 
-sleep 1.5
-xdotool key --delay 50 Super_L+k
+sleep 3
+xdotool key --delay 150 Super_L+k
 reset
 wmctrl -r "bijanbina (Bijan Binaee)" -b add,above
 

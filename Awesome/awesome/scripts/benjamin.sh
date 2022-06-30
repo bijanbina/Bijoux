@@ -12,11 +12,12 @@ DD=$(echo "$DATE"  | cut -d "-" -f3)
 DBUS_PATH="--dest=com.binaee.rebound / com.binaee.rebound"
 dbus-send --session $DBUS_PATH.type  string:"101"
 
+sleep 1.5
 ./open_graph.sh
 read -p "Day: " REQ_DATE
 
-sleep 0.5
-xdotool key --delay 100 Super_L+k
+sleep 1.0
+xdotool key --delay 150 Super_L+k
 sleep 0.1
 
 cd ~/Project/Benjamin
@@ -50,7 +51,6 @@ printf "\n\n\n\n\n\nGit Status:\n"
 git status -s
 xdotool key --delay 50 Super_L+q
 sleep 0.5
-
 
 ZENITY_OPT='zenity --entry  --width 800 --text='
 COMMIT_MSG=$(GDK_DPI_SCALE=2 $ZENITY_OPT"Commit Message" --entry-text="BaTool: ")

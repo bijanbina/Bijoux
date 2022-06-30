@@ -24,6 +24,12 @@ function spawn_tag(command, tag)
 	awful.util.spawn_with_shell(command)
 end
 
+function set_tag(tag)
+	for s = 1, screen.count() do
+		screen[s].tags[tag]:view_only()
+	end
+end
+
 function tag_next()
 	for s = 1, screen.count() do
 		awful.tag.viewnext(screen[s])
