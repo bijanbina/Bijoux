@@ -8,17 +8,15 @@ MM=$(echo "$DATE"  | cut -d "-" -f2)
 DD=$(echo "$DATE"  | cut -d "-" -f3)
 
 # send type
-
 DBUS_PATH="--dest=com.binaee.rebound / com.binaee.rebound"
 dbus-send --session $DBUS_PATH.type  string:"101"
 
-sleep 1.5
 ./open_graph.sh
 read -p "Day: " REQ_DATE
 
 sleep 1.0
 xdotool key --delay 150 Super_L+k
-sleep 0.1
+sleep 0.5
 
 cd ~/Project/Benjamin
 

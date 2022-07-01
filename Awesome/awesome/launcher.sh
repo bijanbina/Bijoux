@@ -67,7 +67,6 @@ elif [[ "$APPLICATION" == "kaldi" ]]; then
 
 elif [[ "$APPLICATION" == "benjamin" ]]; then
 
-
 	if [[ "$IS_PC" ]]; then
 		xdotool mousemove 2960 500
 	else
@@ -76,15 +75,14 @@ elif [[ "$APPLICATION" == "benjamin" ]]; then
 	TAG="1"
 	APP="termite -d ~/.config/awesome/scripts -e ./benjamin.sh"
 
-	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
-	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
+	awesome-client "awful = require('bijoux'); set_tag($TAG)"
 
 	if [[ "$IS_PC" ]]; then
 		awesome-client "spawn_tag('$APP', screen[2].tags[$TAG])"
 	else
 		awesome-client "spawn_tag('$APP', screen[1].tags[$TAG])"
 	fi
-	sleep 2
+	sleep 5
 	xdotool click 1
 	sleep 0.3
 	xdotool key --delay 120 ctrl+shift+equal
@@ -115,8 +113,7 @@ elif [[ "$APPLICATION" == "telegram" ]]; then
 	TAG="4"
 	APP="$TELEGRAM_PATH"
 
-	awesome-client "awful = require('awful'); screen[1].tags[$TAG]:view_only()"
-	awesome-client "awful = require('awful'); screen[2].tags[$TAG]:view_only()"
+	awesome-client "awful = require('bijoux'); set_tag($TAG)"
 
 	if [[ "$IS_PC" ]]; then
 		awesome-client "spawn_tag('$APP', screen[2].tags[$TAG])"

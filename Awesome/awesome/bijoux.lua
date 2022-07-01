@@ -1,15 +1,15 @@
 local awful = require("awful")
 local naughty = require('naughty')  -- debug
-local focus_timer = timer({ timeout = 0.2 })
+local sw_focus_timer = timer({ timeout = 0.2 })
 
-function focusUnderMouse()
+function sw_delayedFocus()
 	local c = awful.mouse.client_under_pointer()
 	if not (c == nil) then
 		--naughty.notify({text='focusUnderMouse' .. c.name})
 		c:raise()
 		client.focus = c
 	end
-	focus_timer:stop()
+	sw_focus_timer:stop()
 end
 
 function spawn_tag(command, tag) 
@@ -75,8 +75,8 @@ function switch_screen()
 		end
 	end
 	
-	focus_timer:connect_signal("timeout", focusUnderMouse)
-	focus_timer:start()
+	sw_focus_timer:connect_signal("timeout", sw_delayedFocus)
+	sw_focus_timer:start()
 end
 
 function switch_screen_app(c)
