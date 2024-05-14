@@ -1,6 +1,5 @@
 {
-    "workbench.colorTheme": "Deeold",
-    "workbench.startupEditor": "newUntitledFile",
+	"workbench.startupEditor": "newUntitledFile",
     "editor.wordWrap": "on",
     "security.workspace.trust.untrustedFiles": "open",
     "window.restoreWindows": "none",
@@ -41,22 +40,46 @@
              "settings": {"foreground": "#80ffbb"}}
         ]
     },
-    "workbench.editor.untitled.hint": "hidden",
     "files.hotExit": "off",
     "editor.fontSize": 18,
     "workbench.editor.pinnedTabSizing": "compact",
-    "workbench.activityBar.visible": false,
     // "breadcrumbs.enabled": false,
-    "breadcrumbs.filePath": "off",
-    "window.menuBarVisibility": "toggle",
+	"breadcrumbs.filePath": "off",
     "breadcrumbs.enabled": false,
-    "editor.autoIndent": "brackets",
     "workbench.editor.decorations.badges":false,
-    "workbench.editor.decorations.colors":false,
-    "workbench.editor.labelFormat":"short",
+    "workbench.editor.decorations.colors": false,
     "editor.renderWhitespace": "all",
     "editor.comments.insertSpace": false,
-    "editor.insertSpaces": false,
-	"editor.detectIndentation": false,
-	"editor.accessibilitySupport": "off"
+	"editor.accessibilitySupport": "off",
+	"workbench.colorTheme": "Deeold",
+	"update.mode": "none",
+	"git.ignoreLegacyWarning": true,
+	"files.exclude": {
+		".deps": true,
+		".libs": true,
+		"*.lo": true,
+		"*.o": true
+	},
+	"files.associations": {
+		"*.acc": "c"
+	},
+	"AlwaysOpenWorkspace.rootFolders": [
+		".",
+		"./"
+    ],
+	"extensions.ignoreRecommendations": true,
+	"workbench.editorAssociations": {
+		"*.sqlite": "default"
+    },
+    "window.zoomLevel": -1,
+    "update.showReleaseNotes": false,
+    "update.enableWindowsBackgroundUpdates": false,
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.empty.hint": "hidden",
+    "git.openRepositoryInParentFolders": "never",
+    "window.customTitleBarVisibility": "windowed",
+    "zenMode.showTabs": "none",
+    "window.menuBarVisibility": "compact",
+    "window.commandCenter": false,
+    "workbench.editor.editorActionsLocation": "hidden"
 }

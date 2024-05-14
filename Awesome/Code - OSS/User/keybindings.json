@@ -17,6 +17,10 @@
     },
     {
         "key": "ctrl+o",
+        "command": "workbench.action.openRecent"
+    },
+    {
+        "key": "f1",
         "command": "workbench.action.quickOpen"
     },
     {
@@ -72,7 +76,7 @@
         "command": "-workbench.action.focusPreviousPart"
     },
     {
-        "key": "f1",
+        "key": "f5",
         "command": "workbench.action.files.openFile"
     },
     {
@@ -126,10 +130,6 @@
         "key": "f4",
         "command": "-references-view.next",
         "when": "reference-list.hasResult && references-view.canNavigate"
-    },
-    {
-        "key": "f5",
-        "command": "workbench.action.openRecent"
     },
     {
         "key": "ctrl+r",
@@ -321,5 +321,59 @@
 		"key": "alt+up",
 		"command": "-editor.action.moveLinesUpAction",
 		"when": "editorTextFocus && !editorReadonly"
-	}
+    },
+    {
+        "key": "shift+f11",
+        "command": "workbench.action.toggleFullScreen",
+        "when": "!isIOS"
+    },
+    {
+        "key": "f11",
+        "command": "-workbench.action.toggleFullScreen",
+        "when": "!isIOS"
+    },
+    {
+        "key": "f11",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "-editor.action.copyLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "-notebook.cell.copyUp",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "shift+alt+down",
+        "command": "-editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+alt+down",
+        "command": "-notebook.cell.copyDown",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+up",
+        "command": "-editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+down",
+        "command": "editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+down",
+        "command": "-editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    }
 ]
