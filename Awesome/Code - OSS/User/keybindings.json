@@ -43,11 +43,6 @@
         "when": "editorTextFocus && foldingEnabled"
     },
     {
-        "key": "ctrl+p",
-        "command": "editor.foldAll",
-        "when": "editorTextFocus && foldingEnabled"
-    },
-    {
         "key": "ctrl+k ctrl+0",
         "command": "-editor.foldAll",
         "when": "editorTextFocus && foldingEnabled"
@@ -268,11 +263,7 @@
 		"command": "-expandLineSelection",
 		"when": "textInputFocus"
 	},
-	{
-		"key": "ctrl+l",
-		"command": "editor.toggleFold"
-	},
-	{
+    {
 		"key": "ctrl+shift+down",
 		"command": "editor.action.moveLinesDownAction",
 		"when": "editorTextFocus && !editorReadonly"
@@ -375,5 +366,29 @@
         "key": "ctrl+alt+down",
         "command": "-editor.action.insertCursorBelow",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "f4",
+        "command": "editor.action.addSelectionToNextFindMatch"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "editor.unfoldRecursively",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+k ctrl+]",
+        "command": "-editor.unfoldRecursively",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "editor.foldLevel1",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+k ctrl+1",
+        "command": "-editor.foldLevel1",
+        "when": "editorTextFocus && foldingEnabled"
     }
 ]

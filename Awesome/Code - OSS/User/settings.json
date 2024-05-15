@@ -6,19 +6,34 @@
     "editor.fontFamily": "'Source Code Pro Medium', 'Droid Sans Mono'",
     "editor.minimap.enabled": false,
     "editor.glyphMargin": false,
-    "editor.lineDecorationsWidth": 0,  //undoc and worked!
+    "editor.lineDecorationsWidth": 20,  //undoc and worked!
     "workbench.colorCustomizations": {
         "editor.background": "#0f192a",
+		"editor.selectionBackground": "#003b70",
+		"editor.selectionHighlightBackground": "#0b343a",
+        "editorGutter.background": "#000d1a",
+		"editorIndentGuide.background": "#213b53",
         "editorLineNumber.foreground": "#0065bf",
         "editorLineNumber.activeForeground": "#70a5ff",
         "editor.lineHighlightBackground": "#1a2d4c",
-		"editor.selectionBackground": "#003b70",
-		"editor.selectionHighlightBackground": "#0b343a",
-		"editorIndentGuide.background": "#213b53",
+        "editorWhitespace.foreground": "#3f495a",
 		"list.activeSelectionBackground": "#333e52",
 		"list.activeSelectionForeground": "#e3f0ff",
-        "editorGutter.background": "#000d1a",
-        "editorWhitespace.foreground": "#3f495a",
+
+        // statusBar
+		"statusBar.background": "#2f3f5a",
+		"statusBar.border": "#121824",
+		"statusBar.debuggingBackground": "#121824",
+		"statusBar.debuggingBorder": "#FF9713",
+		"statusBar.debuggingForeground": "#FF9713",
+		"statusBar.foreground": "#E3F0FF",
+		"statusBar.noFolderBackground": "#121824",
+		"statusBar.noFolderBorder": "#121824",
+		"statusBar.noFolderForeground": "#E3F0FF",
+		"statusBarItem.activeBackground": "#98a2ad",
+		"statusBarItem.hoverBackground": "#8c95a0",
+		"statusBarItem.prominentBackground": "#1D283B",
+		"statusBarItem.prominentHoverBackground": "#121824",
     },
     "editor.tokenColorCustomizations": {
         "comments": "#0088ff",
@@ -50,8 +65,7 @@
     "workbench.editor.decorations.colors": false,
     "editor.renderWhitespace": "all",
     "editor.comments.insertSpace": false,
-	"editor.accessibilitySupport": "off",
-	"workbench.colorTheme": "Deeold",
+    "editor.accessibilitySupport": "off",
 	"update.mode": "none",
 	"git.ignoreLegacyWarning": true,
 	"files.exclude": {
@@ -79,7 +93,9 @@
     "git.openRepositoryInParentFolders": "never",
     "window.customTitleBarVisibility": "windowed",
     "zenMode.showTabs": "none",
-    "window.menuBarVisibility": "compact",
     "window.commandCenter": false,
-    "workbench.editor.editorActionsLocation": "hidden"
+    "workbench.editor.editorActionsLocation": "hidden",
+    "search.quickOpen.includeHistory": false,
+    "workbench.colorTheme": "Deeold",
+    "files.autoSave": "afterDelay"
 }
